@@ -15,14 +15,18 @@ export const convertTime = (unixInput) => {
     second = (second < 10 ) ? "0" + second : second;
     
     let time_display = hour + ":" + minute + ":" + second + " " + session;
-    return { diplay: time_display, hour, minute, second, session};
+    return { t_display: time_display, hour, minute, second, session};
 }
 
 export const getDaylight = (daylight) => {
     const { sunrise, sunset } = daylight;
-    const sunrise_ret = convertTime(sunrise);
-    const sunset_ret = convertTime(sunset);
+    const sunrise_ret = convertTime(sunrise).t_display;
+    const sunset_ret = convertTime(sunset).t_display;
     return { sunrise: sunrise_ret, sunset: sunset_ret }
+}
+
+export const roundTemp = (temp) => {
+    return Math.round(temp + Number.EPSILON)
 }
 
 export const pressureConv = (pressure_hpa) => {
