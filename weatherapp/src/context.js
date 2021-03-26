@@ -7,6 +7,7 @@ const WeatherAppProvider = ({ children }) => {
     //initialize state for a loading property, the location input for the api
     const [location, setLocation] = useState('');
     const [currentWeather, setCurrentWeather] = useState({});
+    const [loading, setLoading] = useState(false)
     const initialRender = useRef(true);
     const validLocation = useRef(null);
 
@@ -17,19 +18,25 @@ const WeatherAppProvider = ({ children }) => {
     
     const fetchWeather = useCallback(async () => {
         console.count('fetchWeather')
+        setLoading(true);
         try {
             const response = await fetch(url);
             const data = await response.json();
             if (data && data.cod !== "404") {
-                setCurrentWeather(data)
                 validLocation.current = true;
+                setCurrentWeather(data)
+                setLoading(false);
+            } else {
+                validLocation.current = false;
+                setLoading(false);
             }
         } catch (error) {
             console.error('error', error)
             validLocation.current = false;
+            setLoading(false);
         }
         
-    }, [location, url])
+    }, [url])
 
     useEffect(() => {
         if (initialRender.current) {
@@ -44,7 +51,7 @@ const WeatherAppProvider = ({ children }) => {
 
     return (
         <WeatherAppContext.Provider
-            value={{initialRender, validLocation, currentWeather, location, setLocation}}
+            value={{initialRender, loading, validLocation, currentWeather, location, setLocation}}
         >
             {children}
         </WeatherAppContext.Provider>

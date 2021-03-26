@@ -1,9 +1,12 @@
 import React from 'react';
 import { useGlobalContext } from '../context';
-import { convertTime, getDaylight, pressureConv, getWind } from './functions'
+import Weather from './Weather';
+import Error from './Error';
+import Welcome from './Welcome'
+import Loading from './Loading'
 
 const Display = () => {
-    const { initialRender, validLocation, currentWeather } = useGlobalContext();
+    const { initialRender, loading, validLocation } = useGlobalContext();
 
 /************************************************************
 Currently breaks on initial render -> context first returns null
@@ -13,41 +16,23 @@ value for currentWeather and destructuring can't happen as a result
     if (initialRender.current === true && validLocation.current === null) {
         console.log('initial render')
         return (
-            <React.Fragment></React.Fragment>
+            <Welcome />
         );
-    } else if (initialRender.current === false && validLocation.current === false) {
-        console.log('invalid location')
+    } else if (initialRender.current === false && loading === true) {
         return (
-            <section>
-                Please enter a valid location
-            </section>
+            <Loading/>
         );
+    } else if (initialRender.current === false && validLocation.current === true && loading === false) {
+        return (
+            <Weather />
+        )
     } else {
-        console.log('currentWeather', currentWeather)
-        // const { clouds, coord, dt, main, name, sys, timezone, visibility, weather, wind } = currentWeather;
-        // const { temp, feels_like, pressure, humidity, temp_min, temp_max, sea_level, grnd_level } = main;
-        // // console.log(clouds, coord, dt, main, name, sys, timezone, visibility, weather, wind)
-        // console.log(currentWeather)
-        // const time = convertTime(dt);
-        // console.log(time)
-        // const { sunrise, sunset } = getDaylight(sys);
-        // console.log(sunrise, sunset)
-        // const pressure_rnd = pressureConv(main.pressure);
-        // console.log(pressure_rnd)
-        // const { speed, direction } = getWind(wind);
-        // console.log(wind)
-
+        console.log('error')
         return (
-            <React.Fragment>
-                <section className='clouds'>
-                    <h2>Cloud Cover %</h2>
-                    {/* <h3>{clouds.all}</h3> */}
-                </section>
-                <section className=''>
-
-                </section>
-            </React.Fragment>
-        )}
+            <Error />
+        );
+    }
+    
 }
 
 export default Display
