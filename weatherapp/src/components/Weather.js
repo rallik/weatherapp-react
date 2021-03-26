@@ -1,13 +1,13 @@
 import React from 'react';
 import { useGlobalContext } from '../context';
-import { convertTime, getDaylight, pressureConv, getWind } from './functions';
+// import { convertTime, getDaylight, pressureConv, getWind } from './functions';
 
 const Weather = () => {
     const { currentWeather } = useGlobalContext();
-    console.count('currentWeather')
+    console.count('context - currentWeather')
     console.log(currentWeather)
-    const { clouds, coord, dt, main, name, sys, timezone, visibility, weather, wind } = currentWeather;
-    const { temp, feels_like, pressure, humidity, temp_min, temp_max, sea_level, grnd_level } = main;
+    // const { clouds, coord, dt, main, name, sys, timezone, visibility, weather, wind } = currentWeather;
+    // const { temp, feels_like, pressure, humidity, temp_min, temp_max, sea_level, grnd_level } = main;
     // console.log(clouds, coord, dt, main, name, sys, timezone, visibility, weather, wind)
     // console.log(currentWeather)
     // const time = convertTime(dt);

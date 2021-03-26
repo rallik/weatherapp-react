@@ -7,6 +7,7 @@ import Loading from './Loading'
 
 const Display = () => {
     const { initialRender, loading, validLocation } = useGlobalContext();
+    console.count('context - display');
 
 /************************************************************
 Currently breaks on initial render -> context first returns null
@@ -14,7 +15,6 @@ value for currentWeather and destructuring can't happen as a result
 ************************************************************/
 
     if (initialRender.current === true && validLocation.current === null) {
-        console.log('initial render')
         return (
             <Welcome />
         );
@@ -35,4 +35,4 @@ value for currentWeather and destructuring can't happen as a result
     
 }
 
-export default Display
+export default Display;

@@ -20,13 +20,16 @@ const WeatherAppProvider = ({ children }) => {
         console.count('fetchWeather')
         setLoading(true);
         try {
+            console.count('try clause')
             const response = await fetch(url);
             const data = await response.json();
             if (data && data.cod !== "404") {
+                console.count('valid return')
                 validLocation.current = true;
                 setCurrentWeather(data)
                 setLoading(false);
             } else {
+                console.count('invalid return')
                 validLocation.current = false;
                 setLoading(false);
             }
