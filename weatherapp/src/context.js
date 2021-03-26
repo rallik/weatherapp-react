@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useContext, useCallback } from 'react';
+import React, { useState, useEffect, useContext, useCallback, useRef } from 'react';
 
 
 const WeatherAppContext = React.createContext();
 
 const WeatherAppProvider = ({ children }) => {
     //initialize state for a loading property, the location input for the api
-    const [location, setLocation] = useState('boston,usa');
-    const [currentWeather, setCurrentWeather] = useState({})
+    const [location, setLocation] = useState('');
+    const [currentWeather, setCurrentWeather] = useState({});
+    const initialRender = useRef(true);
+    const validLocation = useRef(null);
 
     const KEY = process.env.REACT_APP_API_KEY;
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${KEY}`;
@@ -14,23 +16,35 @@ const WeatherAppProvider = ({ children }) => {
     
     
     const fetchWeather = useCallback(async () => {
+        console.count('fetchWeather')
         try {
             const response = await fetch(url);
             const data = await response.json();
             if (data && data.cod !== "404") {
                 setCurrentWeather(data)
+                validLocation.current = true;
             }
         } catch (error) {
             console.error('error', error)
+            validLocation.current = false;
         }
         
     }, [location, url])
 
-    useEffect(() => fetchWeather(), [fetchWeather, location])
+    useEffect(() => {
+        if (initialRender.current) {
+            console.count('initial render useEffect')
+            initialRender.current = false;
+        } else {
+            console.count('other render useEffect')
+            fetchWeather()
+        }
+    },
+        [fetchWeather, location])
 
     return (
         <WeatherAppContext.Provider
-            value={{currentWeather, location, setLocation}}
+            value={{initialRender, validLocation, currentWeather, location, setLocation}}
         >
             {children}
         </WeatherAppContext.Provider>
