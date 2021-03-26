@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {useGlobalContext} from '../context'
 
 const Display = () => {
@@ -7,9 +7,15 @@ const Display = () => {
     // console.log(clouds, coord, dt, main, name, sys, timezone, visibility, weather, wind)
     console.log(currentWeather)
     return (
-        <section>
-            
-        </section>
+        <React.Fragment>
+            <section className='clouds'>
+                <h2>Cloud Cover %</h2>
+                <h3>{clouds.all}</h3>
+            </section>
+            <section className=''>
+
+            </section>
+        </React.Fragment>
     )
 }
 
