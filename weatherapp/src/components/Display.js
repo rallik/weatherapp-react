@@ -13,12 +13,14 @@ const Display = () => {
 Currently breaks on initial render -> context first returns null
 value for currentWeather and destructuring can't happen as a result
 ************************************************************/
+    
+    console.log('display if: ', initialRender.current, validLocation.current, loading)
 
-    if (initialRender.current === true && validLocation.current === null) {
+    if (initialRender.current === true && validLocation.current === null && loading === false) {
         return (
             <Welcome />
         );
-    } else if (initialRender.current === false && loading === true) {
+    } else if (initialRender.current === false && validLocation.current !== false && loading === true) {
         return (
             <Loading/>
         );

@@ -1,15 +1,19 @@
 import React, { useRef } from 'react'
 import { useGlobalContext } from '../context'
-
+console.count('context - formA')
 
 
 const Form = () => {
-    const input = useRef(null)
-    const { setLocation } = useGlobalContext();
+    const { setLocation, setLoading } = useGlobalContext();
+    const input = useRef(null);
+    console.count('context - formB')
 
     const handleSubmit = (e) => {
+        console.count('context - formC')
         e.preventDefault();
-        // console.log(input.current.value)
+        console.count('form - set loading')
+        setLoading(true)
+        console.count('form - set location')
         setLocation(input.current.value)
     }
 

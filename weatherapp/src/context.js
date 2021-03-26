@@ -13,7 +13,7 @@ const WeatherAppProvider = ({ children }) => {
 
     const KEY = process.env.REACT_APP_API_KEY;
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${KEY}`;
-
+    console.count('initialize states')
     
     
     const fetchWeather = useCallback(async () => {
@@ -43,18 +43,18 @@ const WeatherAppProvider = ({ children }) => {
 
     useEffect(() => {
         if (initialRender.current) {
-            console.count('initial render useEffect')
+            console.count('initial render useEffect');
             initialRender.current = false;
         } else {
             console.count('other render useEffect')
             fetchWeather()
         }
     },
-        [fetchWeather, location])
+        [fetchWeather])
 
     return (
         <WeatherAppContext.Provider
-            value={{initialRender, loading, validLocation, currentWeather, location, setLocation}}
+            value={{initialRender, loading, setLoading, validLocation, currentWeather, location, setLocation}}
         >
             {children}
         </WeatherAppContext.Provider>
@@ -62,6 +62,7 @@ const WeatherAppProvider = ({ children }) => {
 }
 
 export const useGlobalContext = () => {
+    console.count('context - GLOBAL')
     return useContext(WeatherAppContext);
 }
 

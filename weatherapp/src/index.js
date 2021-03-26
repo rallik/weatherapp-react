@@ -6,11 +6,9 @@ import { WeatherAppProvider } from './context';
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <WeatherAppProvider>
-      <App />
-    </WeatherAppProvider>
-  </React.StrictMode>,
+  <WeatherAppProvider>
+    <App />
+  </WeatherAppProvider>,
   document.getElementById('root')
 );
 
