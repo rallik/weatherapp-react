@@ -5,7 +5,7 @@ const WeatherAppContext = React.createContext();
 
 const WeatherAppProvider = ({ children }) => {
     //initialize state for a loading property, the location input for the api
-    const [location, setLocation] = useState('boston');
+    const [location, setLocation] = useState('boston,usa');
     const [currentWeather, setCurrentWeather] = useState({})
 
     const KEY = process.env.REACT_APP_API_KEY;
