@@ -18,6 +18,7 @@ const Weather = () => {
     const temp = roundTemp(main.temp);
     const feels_like = roundTemp(main.feels_like)
     const temp_min = roundTemp(main.temp_min)
+    const temp_max = roundTemp(main.temp_max)
 
     const pressure_rnd = pressureConv(main.pressure);
     // console.log(pressure_rnd)
@@ -39,9 +40,14 @@ const Weather = () => {
             <section className='conditions'>
                 <h3>Conditions</h3>
                 <h4>Current Temp: </h4>
-                <p>{temp} °F</p>
+                <p>{temp}°F</p>
+                <h4>Min / Max: </h4>
+                <p>{temp_min}°F / {temp_max}°F</p>
+                
+
+
                 <h4>Feels like:</h4>
-                <p>{feels_like} °F</p>
+                <p>{feels_like}°F</p>
                 <h4>Humidity</h4>
                 <p>{humidity} %</p>
                 <h4>Pressure</h4>
