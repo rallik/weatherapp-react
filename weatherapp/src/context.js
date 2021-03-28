@@ -7,7 +7,8 @@ const WeatherAppProvider = ({ children }) => {
     //initialize state for a loading property, the location input for the api
     const [location, setLocation] = useState('');
     const [currentWeather, setCurrentWeather] = useState({});
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [modalOpen, setModalOpen] = useState(true);
     const initialRender = useRef(true);
     const validLocation = useRef(null);
 
@@ -54,7 +55,7 @@ const WeatherAppProvider = ({ children }) => {
 
     return (
         <WeatherAppContext.Provider
-            value={{initialRender, loading, setLoading, validLocation, currentWeather, location, setLocation}}
+            value={{initialRender, loading, setLoading, modalOpen, setModalOpen, validLocation, currentWeather, location, setLocation}}
         >
             {children}
         </WeatherAppContext.Provider>

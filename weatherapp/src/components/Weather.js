@@ -46,14 +46,16 @@ const Weather = () => {
                 
 
 
-                <h4>Feels like:</h4>
+                <h4>Feels like: </h4>
                 <p>{feels_like}°F</p>
-                <h4>Humidity</h4>
+                <h4>Humidity: </h4>
                 <p>{humidity} %</p>
-                <h4>Pressure</h4>
+                <h4>Pressure: </h4>
                 <p>{pressure_rnd} inHg</p>
-                <h4>Wind Speed/Direction</h4>
+                <h4>Wind Speed/Direction: </h4>
                 <p>{speed} mph {direction}</p>
+                <h4>Clouds: </h4>
+                <p>{clouds}</p>
 
                 <h4>Weather</h4>
                 {
