@@ -64,28 +64,68 @@ header {
         margin: 0;
     }
 
+    .time-h, .time-d {
+        grid-row: 1 / 2;
+    }
     .time-h {
-        grid-column: 1 / 4;
-        grid-row: 3 / 4;
+        grid-column: 3 / 4;
+    }
+    .time-d {
+        grid-column: 4 / 5;
+    }
+
+    .sun-r-h, .sun-r-d, .sun-s-h, .sun-s-d {
+        grid-row: 2 / 3;
+    }
+    .sun-r-h {
+        grid-column: 3 / 4;
+    }
+    .sun-r-d {
+        grid-column: 4 / 5;
+    }
+    .sun-s-h {
+        grid-column: 5 / 6;
+    }
+    .sun-s-d {
+        grid-column: 6 / 7;
     }
 }
 
 .conditions {
-    display: inherit;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
     grid-column: 1 / 7;
-    grid-row: 3 / 13;
+    grid-row: 4 / 13;
 
-    h4 {
-        grid-column: 2/4;
-        width: min-content;
+    h4, p {
         margin: 0;
         padding: 0;
 
     }
 
-    p {
-        width: min-content;
-        margin: 0;
-        padding: 0;
+    .cond {
+        grid-column: 1 / 3;
+        grid-row: 1 / 2;
+    }
+
+    .current-temp-h, .current-temp-d {
+        grid-row: 2 / 3;
+    }
+    .current-temp-h {
+        grid-column: 1 / 3;
+    }
+    .current-temp-d {
+        grid-column: 3 / 4;
+    }
+
+    .min-max-temp-h, .min-max-temp-d {
+        grid-row: 3 / 5;
+    }
+    .min-max-temp-h {
+        grid-column: 1 / 3;
+    }
+    .min-max-temp-h {
+        grid-column: 1 / 3;
     }
   }

@@ -32,15 +32,17 @@ const Weather = () => {
                 <h1 className='city-displayed'>{name}</h1>
                 <h4 className='time-h'>Time</h4>
                 <p className='time-d'>{t_display}</p>
-                <h4 className='sun-h'>Sunrise / Sunset</h4>
-                <p className='sun-d'>{sunrise} / {sunset}</p>
+                <h4 className='sun-r-h'>Sunrise</h4>
+                <p className='sun-r-d'>{sunrise}</p>
+                <h4 className='sun-s-h'>Sunset</h4>
+                <p className='sun-s-d'>{sunset}</p>
 
                 <div className='conditions'>
-                    <h3>Conditions</h3>
-                    <h4>Current Temp: </h4>
-                    <p>{temp}°F</p>
-                    <h4>Min / Max: </h4>
-                    <p>{temp_min}°F / {temp_max}°F</p>
+                    <h3 className='cond'>Conditions</h3>
+                    <h4 className='current-temp-h'>Current Temp: </h4>
+                    <p className='current-temp-d'>{temp}°F</p>
+                    <h4 className='min-max-temp-h'>Min / Max: </h4>
+                    <p className='min-max-temp-d'>{temp_min}°F / {temp_max}°F</p>
                     
 
 
