@@ -10,8 +10,7 @@ const Display = () => {
     console.count('context - display');
 
 /************************************************************
-Currently breaks on initial render -> context first returns null
-value for currentWeather and destructuring can't happen as a result
+Can still submit same place 2x, sticks on loading view
 ************************************************************/
     
     console.log('display if: ', initialRender.current, validLocation.current, loading)
