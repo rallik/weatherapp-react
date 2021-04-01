@@ -54,7 +54,7 @@ const Weather = () => {
                 <p>{pressure_rnd} inHg</p>
                 <h4>Wind Speed/Direction: </h4>
                 <p>{speed} mph {direction}</p>
-                <h4>Clouds: </h4>
+                {/* <h4>Clouds: </h4>
                 <p>{clouds}</p>
 
                 <h4>Weather</h4>
@@ -65,7 +65,7 @@ const Weather = () => {
                             <p key={id}>{w.description}</p>
                         );
                     })
-                }
+                } */}
             </section>
 
             

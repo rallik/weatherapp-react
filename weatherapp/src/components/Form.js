@@ -18,7 +18,7 @@ const Form = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='loc-search' onSubmit={handleSubmit}>
             <label htmlFor="test">Enter a Location: </label>
             <input type="text" id="test" name="test" ref={input}/>
             <button type='submit'>Submit</button>
