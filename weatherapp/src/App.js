@@ -11,8 +11,10 @@ const App = () => {
     <React.Fragment>
       <Header />
       {/* <Nav /> */}
-      <Form />
-      <Display />
+      <main>
+        <Form />
+        <Display />
+      </main>
     </React.Fragment>
   )
 }

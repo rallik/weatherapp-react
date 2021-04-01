@@ -25,48 +25,48 @@ const Weather = () => {
     const { speed, direction } = getWind(wind);
     // console.log(wind)
 
+    console.log(clouds)
     return (
         <React.Fragment>
-            <section className='cityInfo'>
-                <h2>{name}</h2>
-                <h4>Time</h4>
-                <p>{t_display}</p>
-                <h4>Sunrise / Sunset</h4>
-                <p>{sunrise} / {sunset}</p>
+            <section className='weather'>
+                <h1 className='city-displayed'>{name}</h1>
+                <h4 className='time-h'>Time</h4>
+                <p className='time-d'>{t_display}</p>
+                <h4 className='sun-h'>Sunrise / Sunset</h4>
+                <p className='sun-d'>{sunrise} / {sunset}</p>
+
+                <div className='conditions'>
+                    <h3>Conditions</h3>
+                    <h4>Current Temp: </h4>
+                    <p>{temp}°F</p>
+                    <h4>Min / Max: </h4>
+                    <p>{temp_min}°F / {temp_max}°F</p>
+                    
+
+
+                    <h4>Feels like: </h4>
+                    <p>{feels_like}°F</p>
+                    <h4>Humidity: </h4>
+                    <p>{humidity} %</p>
+                    <h4>Pressure: </h4>
+                    <p>{pressure_rnd} inHg</p>
+                    <h4>Wind Speed/Direction: </h4>
+                    <p>{speed} mph {direction}</p>
+                    <h4>Clouds: </h4>
+                    <p>{clouds.all}</p>
+
+                    <h4>Weather</h4>
+                    {
+                        weather.map((w) => {
+                            const id = new Date().getTime.toString()
+                            return (
+                                <p key={id} className='current-w'>{w.description}</p>
+                            );
+                        })
+                    }
+                </div>
             </section>
-            <section className='daylight'>
-
-            </section>
-            <section className='conditions'>
-                <h3>Conditions</h3>
-                <h4>Current Temp: </h4>
-                <p>{temp}°F</p>
-                <h4>Min / Max: </h4>
-                <p>{temp_min}°F / {temp_max}°F</p>
-                
-
-
-                <h4>Feels like: </h4>
-                <p>{feels_like}°F</p>
-                <h4>Humidity: </h4>
-                <p>{humidity} %</p>
-                <h4>Pressure: </h4>
-                <p>{pressure_rnd} inHg</p>
-                <h4>Wind Speed/Direction: </h4>
-                <p>{speed} mph {direction}</p>
-                {/* <h4>Clouds: </h4>
-                <p>{clouds}</p>
-
-                <h4>Weather</h4>
-                {
-                    weather.map((w) => {
-                        const id = new Date().getTime.toString()
-                        return (
-                            <p key={id}>{w.description}</p>
-                        );
-                    })
-                } */}
-            </section>
+            
 
             
         </React.Fragment>

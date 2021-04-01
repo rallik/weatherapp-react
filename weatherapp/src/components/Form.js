@@ -4,17 +4,19 @@ console.count('context - formA')
 
 
 const Form = () => {
-    const { setLocation, setLoading } = useGlobalContext();
-    const input = useRef(null);
+    const { location, setLocation } = useGlobalContext();
+    const input = useRef('');
     console.count('context - formB')
 
     const handleSubmit = (e) => {
         console.count('context - formC')
         e.preventDefault();
-        console.count('form - set loading')
-        setLoading(true)
         console.count('form - set location')
+        console.log("******************", e, '***********', location, "************")
+        console.log(input.current.value)
+        
         setLocation(input.current.value)
+        
     }
 
     return (
