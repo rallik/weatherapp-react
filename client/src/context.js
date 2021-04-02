@@ -19,7 +19,7 @@ const WeatherAppProvider = ({ children }) => {
     
     const fetchWeather = useCallback(async () => {
         console.count('fetchWeather')
-        setLoading(true);
+        
         try {
             console.count('try clause')
             const response = await fetch(url);
