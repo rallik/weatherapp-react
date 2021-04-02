@@ -39,33 +39,35 @@ const Weather = () => {
 
                 <div className='conditions'>
                     <h3 className='cond'>Conditions</h3>
-                    <h4 className='current-temp-h'>Current Temp: </h4>
-                    <p className='current-temp-d'>{temp}°F</p>
-                    <h4 className='min-max-temp-h'>Min / Max: </h4>
-                    <p className='min-max-temp-d'>{temp_min}°F / {temp_max}°F</p>
-                    
-
-
-                    <h4>Feels like: </h4>
-                    <p>{feels_like}°F</p>
-                    <h4>Humidity: </h4>
-                    <p>{humidity} %</p>
-                    <h4>Pressure: </h4>
-                    <p>{pressure_rnd} inHg</p>
-                    <h4>Wind Speed/Direction: </h4>
-                    <p>{speed} mph {direction}</p>
-                    <h4>Clouds: </h4>
-                    <p>{clouds.all}</p>
-
-                    <h4>Weather</h4>
                     {
                         weather.map((w) => {
                             const id = new Date().getTime.toString()
                             return (
-                                <p key={id} className='current-w'>{w.description}</p>
+                                <p key={id} className='current-w-d'>{w.description}</p>
                             );
                         })
                     }
+
+                    <h4 className='current-temp-h'>Current Temp: </h4>
+                    <p className='current-temp-d'>{temp}°F</p>
+
+                    <h4 className='feels-like-h'>Feels like: </h4>
+                    <p className='feels-like-d'>{feels_like}°F</p>
+
+                    <h4 className='min-max-temp-h'>Min / Max: </h4>
+                    <p className='min-max-temp-d'>{temp_min}°F / {temp_max}°F</p>
+                    
+                    <h4 className='humidity-h'>Humidity: </h4>
+                    <p className='humidity-d'>{humidity} %</p>
+
+                    <h4 className='pressure-h'>Pressure: </h4>
+                    <p className='pressure-d'>{pressure_rnd} inHg</p>
+
+                    <h4 className='wind-h'>Wind Speed/Direction: </h4>
+                    <p className='wind-d'>{speed} mph {direction}</p>
+
+                    <h4 className='clouds-h'>Clouds: </h4>
+                    <p className='clouds-d'>{clouds.all}</p>
                 </div>
             </section>
             
