@@ -3,6 +3,7 @@ import Header from "./components/Header";
 // import Nav from "./components/Nav";
 import Form from "./components/Form";
 import Display from "./components/Display";
+import Map from './components/Map';
 import './styles/App.scss'
 
 
@@ -14,6 +15,7 @@ const App = () => {
       <main>
         <Form />
         <Display />
+        <Map />
       </main>
     </React.Fragment>
   )

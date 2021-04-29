@@ -41,9 +41,9 @@ const Weather = () => {
                     <h3 className='cond'>Conditions</h3>
                     {
                         weather.map((w) => {
-                            const id = new Date().getTime.toString()
+                            // const id = () => new Date().getTime.toString();
                             return (
-                                <p key={id} className='current-w-d'>{w.description}</p>
+                                <p key={() => new Date().getTime.toString()} className='current-w-d'>{w.description}</p>
                             );
                         })
                     }

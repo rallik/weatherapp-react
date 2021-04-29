@@ -21,11 +21,13 @@ const Form = () => {
     }
 
     return (
-        <form className='loc-search' onSubmit={handleSubmit}>
-            <label htmlFor="test">Enter a Location: </label>
-            <input type="text" id="test" name="test" ref={input} required/>
-            <button type='submit'>Submit</button>
-        </form>
+        <section className='form-map'>
+            <form className='loc-search' onSubmit={handleSubmit}>
+                <label htmlFor="test">Enter a Location: </label>
+                <input type="text" id="test" name="test" ref={input} required/>
+                <button type='submit'>Submit</button>
+            </form>
+        </section>
     )
 }
 
