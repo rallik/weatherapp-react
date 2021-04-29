@@ -14,7 +14,7 @@ const Form = () => {
         console.count('form - set location')
         console.log("******************", e, '***********', location, "************")
         console.log(input.current.value)
-        if (input.current.value !== '') {
+        if (input.current.value !== '' && input.current.value !== location) {
             setLoading(true);
             setLocation(input.current.value)
         }

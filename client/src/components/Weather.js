@@ -43,7 +43,7 @@ const Weather = () => {
                         weather.map((w) => {
                             // const id = () => new Date().getTime.toString();
                             return (
-                                <p key={() => new Date().getTime.toString()} className='current-w-d'>{w.description}</p>
+                                <p key={w.id} className='current-w-d'>{w.description}</p>
                             );
                         })
                     }
