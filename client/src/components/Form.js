@@ -21,7 +21,7 @@ const Form = () => {
     }
 
     return (
-        <section className='form-map'>
+        <section className='form'>
             <form className='loc-search' onSubmit={handleSubmit}>
                 <label htmlFor="test">Enter a Location: </label>
                 <input type="text" id="test" name="test" ref={input} required/>

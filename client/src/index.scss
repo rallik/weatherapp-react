@@ -2,11 +2,9 @@ $base-color: #fefefe;
 
 
 
-body, #root {
+* {
   margin: 0;
   padding: 0;
-  background-color: $base-color;
-  width: 100vw;
-  height: 100vh;
+  
 }
 
