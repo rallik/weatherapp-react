@@ -53,9 +53,6 @@ const Weather = () => {
 
                     <h4 className='feels-like-h'>Feels like: </h4>
                     <p className='feels-like-d'>{feels_like}°F</p>
-
-                    <h4 className='min-max-temp-h'>Min / Max: </h4>
-                    <p className='min-max-temp-d'>{temp_min}°F / {temp_max}°F</p>
                     
                     <h4 className='humidity-h'>Humidity: </h4>
                     <p className='humidity-d'>{humidity} %</p>
