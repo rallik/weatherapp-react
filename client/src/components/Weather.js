@@ -10,9 +10,9 @@ const Weather = () => {
     const { humidity } = main;
     // console.log(clouds, coord, dt, main, name, sys, timezone, visibility, weather, wind)
     // console.log(currentWeather)
-    const { t_display } = convertTime(dt);
+    const { t_display } = convertTime(dt, timezone);
     // console.log(time)
-    const { sunrise, sunset } = getDaylight(sys);
+    const { sunrise, sunset } = getDaylight(sys, timezone);
     // console.log(sunrise, sunset)
 
     const temp = roundTemp(main.temp);
@@ -29,13 +29,15 @@ const Weather = () => {
     return (
         <React.Fragment>
             <section className='weather'>
-                <h1 className='city-displayed'>{name}</h1>
-                <h4 className='time-h'>Time</h4>
-                <p className='time-d'>{t_display}</p>
-                <h4 className='sun-r-h'>Sunrise</h4>
-                <p className='sun-r-d'>{sunrise}</p>
-                <h4 className='sun-s-h'>Sunset</h4>
-                <p className='sun-s-d'>{sunset}</p>
+                <h1 className='city'>{name}</h1>
+                <div className="time">
+                    <h4 className='time-h'>Last Updated:</h4>
+                    <p className='time-d'>{t_display}</p>
+                    <h4 className='sun-r-h'>Sunrise</h4>
+                    <p className='sun-r-d'>{sunrise}</p>
+                    <h4 className='sun-s-h'>Sunset</h4>
+                    <p className='sun-s-d'>{sunset}</p>
+                </div>
 
                 <div className='conditions'>
                     <h3 className='cond'>Conditions</h3>
