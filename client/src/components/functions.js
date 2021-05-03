@@ -1,16 +1,27 @@
 export const convertTime = (unixInput, timezone) => {
     const timecheck = new Date();
+    console.log('time0', timecheck)
+    console.log('hours0', timecheck.getHours())
+
     const timecheckapi = new Date(unixInput * 1000);
+    console.log('time1', timecheckapi)
+    console.log('hours1', timecheckapi.getHours())
+
+
     console.log(typeof timecheckapi)
     const timezonecheck = timecheck.getTimezoneOffset() * -60;
+    console.log('timezone0', timezonecheck);
+    console.log('timezone1', timezone);
+
+
     let time;
 
     if (timezone !== timezonecheck) {
-        console.log(timezone);
-        
-        const correcttimezone = timecheckapi.setHours( timecheckapi.getHours() + (timezone + Math.abs(timezonecheck) / 3600) + 1);
-        console.log(correcttimezone)
-        time = new Date(correcttimezone)
+        //TODO -> fix next line
+        //currently pushes day back to Sep 30 2021
+        timecheckapi.setHours(timezone + Math.abs(timezonecheck) / 3600);
+        console.log('time2', timecheckapi)
+        time = timecheckapi;
         console.log(typeof time)
 
     } else {
@@ -19,8 +30,9 @@ export const convertTime = (unixInput, timezone) => {
 
     console.log(timezonecheck)
     console.log(timezone)
+    console.log('time3',time)
 
-    console.log(time)
+
     let hour = time.getHours();
     let minute = time.getMinutes();
     let second = time.getSeconds();
