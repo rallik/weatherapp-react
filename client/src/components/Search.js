@@ -3,7 +3,7 @@ import { useGlobalContext } from '../context'
 console.count('context - formA')
 
 
-const Form = () => {
+const Search = () => {
     const { location, setLocation, setLoading } = useGlobalContext();
     const input = useRef('');
     console.count('context - formB')
@@ -21,7 +21,7 @@ const Form = () => {
     }
 
     return (
-        <section className='form'>
+        <section className='search'>
             <form className='loc-search' onSubmit={handleSubmit}>
                 <label htmlFor="test">Enter a Location: </label>
                 <input type="text" id="test" name="test" ref={input} required/>
@@ -31,4 +31,4 @@ const Form = () => {
     )
 }
 
-export default Form
+export default Search

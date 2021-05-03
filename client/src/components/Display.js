@@ -5,7 +5,7 @@ import Error from './Error';
 import Welcome from './Welcome'
 import Loading from './Loading'
 
-const Display = () => {
+const Switch = () => {
     const { initialRender, loading, validLocation } = useGlobalContext();
     console.count('context - display');
 
@@ -33,6 +33,14 @@ Can still submit same place 2x, sticks on loading view
             <Error />
         );
     }
+}
+
+const Display = () => {
+    return (
+        <section className='data'>
+            <Switch />
+        </section>
+    )
     
 }
 

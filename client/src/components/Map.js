@@ -60,7 +60,7 @@ const Display = () => {
     }, [coord])
     
     return (
-        <section className='weather-map'>
+        <section className='map-display'>
             {/* Equivilant to L.map('map', {center: position, zoom: zoom}); */}
             <MapContainer className='map' key={key} center={center} zoom={zoom} scrollWheelZoom={true}>
                 <LayersControl position='topright'>
