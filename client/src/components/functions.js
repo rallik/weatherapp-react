@@ -47,7 +47,7 @@ export const convertTime = (unixInput, timezone) => {
     second = (second < 10 ) ? "0" + second : second;
     
     let time_display = hour + ":" + minute + ":" + second + " " + session;
-    return { t_display: time_display, hour, minute, second, session};
+    return { t_display: time_display, hour, minute, second, session, date: time};
 }
 
 export const getDaylight = (daylight, timezone) => {

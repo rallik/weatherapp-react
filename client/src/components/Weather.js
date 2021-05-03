@@ -1,4 +1,5 @@
 import React from 'react';
+import SunCalc from 'suncalc';
 import { useGlobalContext } from '../context';
 import { convertTime, getDaylight, roundTemp, pressureConv, getWind } from './functions';
 
@@ -10,10 +11,16 @@ const Weather = () => {
     const { humidity } = main;
     // console.log(clouds, coord, dt, main, name, sys, timezone, visibility, weather, wind)
     // console.log(currentWeather)
-    const { t_display } = convertTime(dt, timezone);
+    const { t_display, date } = convertTime(dt, timezone);
     // console.log(time)
     const { sunrise, sunset } = getDaylight(sys, timezone);
     // console.log(sunrise, sunset)
+
+    //suncalc
+    const suntimes = SunCalc.getTimes(date, coord.lat, coord.lon);
+    console.log('suntimes', suntimes);
+    
+
 
     const temp = roundTemp(main.temp);
     const feels_like = roundTemp(main.feels_like)
