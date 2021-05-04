@@ -1,17 +1,17 @@
 export const convertTime = (unixInput, timezone) => {
     const timecheck = new Date();
-    // console.log('time0', timecheck)
+    console.log('time0', timecheck)
     // console.log('hours0', timecheck.getHours())
 
     const timecheckapi = new Date(unixInput * 1000);
-    // console.log('time1', timecheckapi)
+    console.log('time1', timecheckapi)
     // console.log('hours1', timecheckapi.getHours())
 
 
     // console.log(typeof timecheckapi)
     const timezonecheck = timecheck.getTimezoneOffset() * -60;
-    // console.log('timezone0', timezonecheck);
-    // console.log('timezone1', timezone);
+    console.log('timezone0', timezonecheck);
+    console.log('timezone1', timezone);
 
 
     let time;
@@ -19,8 +19,30 @@ export const convertTime = (unixInput, timezone) => {
     if (timezone !== timezonecheck) {
         const apihours = timecheckapi.getHours();
         timecheckapi.setHours( apihours + ((timezone - timezonecheck) / 3600));
-        // console.log('time2', timecheckapi)
+        // console.log('time2', timecheckapi.toString());
+        // const tzdivide = timezone / 3600;
+        // console.log(tzdivide);
+        // const tzsign = (tzdivide > 0) ? '+' : '';
+        // let tzsimplify = tzdivide;
+
+        // switch (tzdivide.toString().length) {
+        //     case tzdivide.length > 1:
+        //         tzsimplify = `${tzdivide}00`;
+        //         break;
+        
+        //     default:
+        //         tzsimplify = `0${tzdivide}00`;
+        // }
+        
+    
+        // const tzstring = `GMT${tzsign}${tzsimplify}`;
+        // const timenotzone = timecheckapi.toString().split('GMT');
+        // console.log(timenotzone)
+        // console.log(timenotzone[0] + tzstring);
+        
+        // time = new Date(timenotzone[0] + tzstring);
         time = timecheckapi;
+
         // console.log(typeof time)
 
     } else {
@@ -29,9 +51,9 @@ export const convertTime = (unixInput, timezone) => {
 
     // console.log(timezonecheck)
     // console.log(timezone)
-    // console.log('time3',time)
+    console.log('time3',time)
 
-
+    let day = time.getDate();
     let hour = time.getHours();
     let minute = time.getMinutes();
     let second = time.getSeconds();
@@ -47,7 +69,7 @@ export const convertTime = (unixInput, timezone) => {
     second = (second < 10 ) ? "0" + second : second;
     
     let time_display = hour + ":" + minute + ":" + second + " " + session;
-    return { t_display: time_display, hour, minute, second, session, date: time};
+    return { t_display: time_display, hour, minute, second, session, date: time, day};
 }
 
 export const getDaylight = (daylight, timezone) => {

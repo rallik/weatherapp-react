@@ -11,14 +11,15 @@ const Weather = () => {
     const { humidity } = main;
     // console.log(clouds, coord, dt, main, name, sys, timezone, visibility, weather, wind)
     // console.log(currentWeather)
-    const { t_display, date } = convertTime(dt, timezone);
-    // console.log(time)
+    const { t_display, date, day } = convertTime(dt, timezone);
+    console.log(date, day)
     const { sunrise, sunset } = getDaylight(sys, timezone);
     // console.log(sunrise, sunset)
 
     //suncalc
-    const suntimes = SunCalc.getTimes(date, coord.lat, coord.lon);
-    console.log('suntimes', suntimes);
+    const suntimes_today = SunCalc.getTimes(date, coord.lat, coord.lon);
+    console.log(date.toString())
+    console.log('suntimes', suntimes_today);
     
 
 
