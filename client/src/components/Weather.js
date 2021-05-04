@@ -11,15 +11,38 @@ const Weather = () => {
     const { humidity } = main;
     // console.log(clouds, coord, dt, main, name, sys, timezone, visibility, weather, wind)
     // console.log(currentWeather)
-    const { t_display, date, day } = convertTime(dt, timezone);
-    console.log(date, day)
-    const { sunrise, sunset } = getDaylight(sys, timezone);
+    const { t_display, date, day } = convertTime(dt, false);
+    const { sunrise, sunset } = getDaylight(sys);
     // console.log(sunrise, sunset)
 
     //suncalc
-    const suntimes_today = SunCalc.getTimes(date, coord.lat, coord.lon);
-    console.log(date.toString())
+    let yesterday = date;
+    let today = date;
+    let tomorrow = date;
+
+
+    const noon = new Date(today.setHours(12, 0, 0));
+    const noontomorrow = new Date(tomorrow.setHours(12, 0, 0)).setDate(day + 1);
+    const noonyesterday = new Date(yesterday.setHours(12, 0, 0)).setDate(day - 1)
+    console.log(noon)
+
+    const suntimes_yesterday = SunCalc.getTimes(noonyesterday, coord.lat, coord.lon);
+    const suntimes_today = SunCalc.getTimes(noon, coord.lat, coord.lon);
+    const suntimes_tomorrow = SunCalc.getTimes(noontomorrow, coord.lat, coord.lon);
+    console.table([suntimes_yesterday, suntimes_today, suntimes_tomorrow])
+    // console.log(convertTime(date, null, false))
+    // console.log('suntimes', Object.keys(suntimes_today), Object.values(suntimes_today));
+    const suntimes_keys = Object.keys(suntimes_today);
+    const newtimes = {};
+    for (let key of suntimes_keys) {
+        // console.log(suntimes_today[key])
+        // console.log(typeof suntimes_today[key]);
+        newtimes[key] = convertTime(suntimes_today[key], true);
+        
+    }
+    console.log(date, day)
     console.log('suntimes', suntimes_today);
+    console.log('newtimes',newtimes)
     
 
 
@@ -33,7 +56,7 @@ const Weather = () => {
     const { speed, direction } = getWind(wind);
     // console.log(wind)
 
-    console.log(clouds)
+    // console.log(clouds)
     return (
         <React.Fragment>
             <section className='weather'>

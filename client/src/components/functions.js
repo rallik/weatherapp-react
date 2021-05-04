@@ -1,57 +1,51 @@
-export const convertTime = (unixInput, timezone) => {
-    const timecheck = new Date();
-    console.log('time0', timecheck)
-    // console.log('hours0', timecheck.getHours())
+// const convertTimezone = (timeInput, tz) => {
+//     let correctedtz;
+//     const timecheck = new Date();
+//     console.log('time0', typeof timecheck)
+//     // console.log('hours0', timecheck.getHours())
 
-    const timecheckapi = new Date(unixInput * 1000);
-    console.log('time1', timecheckapi)
-    // console.log('hours1', timecheckapi.getHours())
-
-
-    // console.log(typeof timecheckapi)
-    const timezonecheck = timecheck.getTimezoneOffset() * -60;
-    console.log('timezone0', timezonecheck);
-    console.log('timezone1', timezone);
+//     const timecheckapi = new Date(timeInput * 1000);
+//     console.log('time1', timecheckapi)
+//     // console.log('hours1', timecheckapi.getHours())
 
 
+//     // console.log(typeof timecheckapi)
+//     const timezonecheck = timecheck.getTimezoneOffset() * -60;
+//     console.log('timezone0', timezonecheck);
+//     console.log('timezone1', tz);
+
+
+
+//     if (tz !== timezonecheck) {
+//         const apihours = timecheckapi.getHours();
+//         timecheckapi.setHours( apihours + ((tz - timezonecheck) / 3600));
+//         correctedtz = timecheckapi;
+
+//         // console.log(typeof time)
+//     } else {
+//         correctedtz = timecheckapi;
+//     }
+
+//     console.log(typeof correctedtz)
+//     return correctedtz;
+
+// }
+
+export const convertTime = (unixInput, notUnix) => {
     let time;
+    // if (needtzcorrect === true) {
+    //     time = convertTimezone(unixInput, timezone);
+    //     console.log('time3',time)
+    // } else {
+    //     time = unixInput;
+    // }
 
-    if (timezone !== timezonecheck) {
-        const apihours = timecheckapi.getHours();
-        timecheckapi.setHours( apihours + ((timezone - timezonecheck) / 3600));
-        // console.log('time2', timecheckapi.toString());
-        // const tzdivide = timezone / 3600;
-        // console.log(tzdivide);
-        // const tzsign = (tzdivide > 0) ? '+' : '';
-        // let tzsimplify = tzdivide;
-
-        // switch (tzdivide.toString().length) {
-        //     case tzdivide.length > 1:
-        //         tzsimplify = `${tzdivide}00`;
-        //         break;
-        
-        //     default:
-        //         tzsimplify = `0${tzdivide}00`;
-        // }
-        
-    
-        // const tzstring = `GMT${tzsign}${tzsimplify}`;
-        // const timenotzone = timecheckapi.toString().split('GMT');
-        // console.log(timenotzone)
-        // console.log(timenotzone[0] + tzstring);
-        
-        // time = new Date(timenotzone[0] + tzstring);
-        time = timecheckapi;
-
-        // console.log(typeof time)
-
+    if (notUnix !== true) {
+        time = new Date(unixInput * 1000);
     } else {
-        time = timecheckapi;
+        time = unixInput;
     }
-
-    // console.log(timezonecheck)
-    // console.log(timezone)
-    console.log('time3',time)
+    
 
     let day = time.getDate();
     let hour = time.getHours();
@@ -59,7 +53,7 @@ export const convertTime = (unixInput, timezone) => {
     let second = time.getSeconds();
     let session = "am";
 
-    if (hour > 12){
+    if (hour >= 12){
         hour = hour - 12;
         session = "pm";
     }
@@ -72,10 +66,10 @@ export const convertTime = (unixInput, timezone) => {
     return { t_display: time_display, hour, minute, second, session, date: time, day};
 }
 
-export const getDaylight = (daylight, timezone) => {
+export const getDaylight = (daylight) => {
     const { sunrise, sunset } = daylight;
-    const sunrise_ret = convertTime(sunrise, timezone).t_display;
-    const sunset_ret = convertTime(sunset, timezone).t_display;
+    const sunrise_ret = convertTime(sunrise, false).t_display;
+    const sunset_ret = convertTime(sunset, false).t_display;
     return { sunrise: sunrise_ret, sunset: sunset_ret }
 }
 
