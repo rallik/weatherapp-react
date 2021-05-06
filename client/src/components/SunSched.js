@@ -3,7 +3,8 @@ import SunCalc from 'suncalc';
 import { convertTime, getDaylight} from './functions';
 
 
-const SunSched = (props) => {
+const SunSched = ({ props }) => {
+    console.log('&&&&&&&&&&&&&&&&&&&&&&&',props)
     const { date, day, sys, coord, timezone } = props;
     const { sunrise, sunset } = getDaylight(sys);
     
