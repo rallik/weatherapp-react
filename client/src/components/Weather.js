@@ -47,23 +47,35 @@ const Weather = () => {
                         })
                     }
 
-                    <h4 className='current-temp-h'>Current Temp: </h4>
-                    <p className='current-temp-d'>{temp}°F</p>
+                    <div className="current-temp">
+                        <h4 className='current-temp-h'>Current Temp: </h4>
+                        <p className='current-temp-d'>{temp}°F</p>
+                    </div>
 
-                    <h4 className='feels-like-h'>Feels like: </h4>
-                    <p className='feels-like-d'>{feels_like}°F</p>
+                    <div className="feels-like">
+                        <h4 className='feels-like-h'>Feels like: </h4>
+                        <p className='feels-like-d'>{feels_like}°F</p>
+                    </div>
                     
-                    <h4 className='humidity-h'>Humidity: </h4>
-                    <p className='humidity-d'>{humidity} %</p>
+                    <div className="humidity">
+                        <h4 className='humidity-h'>Humidity: </h4>
+                        <p className='humidity-d'>{humidity} %</p>
+                    </div>
 
-                    <h4 className='pressure-h'>Pressure: </h4>
-                    <p className='pressure-d'>{pressure_rnd} inHg</p>
+                    <div className="pressure">
+                        <h4 className='pressure-h'>Pressure: </h4>
+                        <p className='pressure-d'>{pressure_rnd} inHg</p>
+                    </div>
 
-                    <h4 className='wind-h'>Wind Speed/Direction: </h4>
-                    <p className='wind-d'>{speed} mph {direction}</p>
+                    <div className="wind">
+                        <h4 className='wind-h'>Wind Speed/Direction: </h4>
+                        <p className='wind-d'>{speed} mph {direction}</p>
+                    </div>
 
-                    <h4 className='clouds-h'>Clouds: </h4>
-                    <p className='clouds-d'>{clouds.all}</p>
+                    <div className="clouds">
+                        <h4 className='clouds-h'>Clouds: </h4>
+                        <p className='clouds-d'>{clouds.all}</p>
+                    </div>
                 </div>
             </section>
             
