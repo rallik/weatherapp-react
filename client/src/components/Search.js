@@ -25,7 +25,7 @@ const Search = () => {
             <form className='loc-search' onSubmit={handleSubmit}>
                 <label htmlFor="test">Enter a Location: </label>
                 <input type="text" id="test" name="test" ref={input} required/>
-                <button type='submit'>Submit</button>
+                <button type='submit'>Find Location</button>
             </form>
         </section>
     )

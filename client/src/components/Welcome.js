@@ -4,7 +4,7 @@ const Welcome = () => {
     console.count('welcome');
     return (
         <h2 className='welcome-msg'>
-            Welcome to the weather app!
+            Welcome to PhotoWeather!
         </h2>
     )
 }

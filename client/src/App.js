@@ -13,11 +13,11 @@ const App = () => {
       <Header />
       {/* <Nav /> */}
       <main className='app'>
-        <section className='search-data-display'>
-          <Search />
-          <Display />
-        </section>
         <Map />
+        <section className='search-data-display'>
+          <Display />
+          <Search />
+        </section>
       </main>
     </React.Fragment>
   )
