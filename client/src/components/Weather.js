@@ -37,7 +37,7 @@ const Weather = () => {
                 <Time/>
 
                 <div className='conditions'>
-                    <h3 className='cond'>Conditions</h3>
+                    <h3 className='cond'>Conditions: </h3>
                     {
                         weather.map((w) => {
                             // const id = () => new Date().getTime.toString();

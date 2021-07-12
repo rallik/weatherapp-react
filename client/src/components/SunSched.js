@@ -39,10 +39,10 @@ const SunSched = ({ props }) => {
     console.log('newtimes',newtimes)
     return (
         <React.Fragment>
-            <h4 className='sun-r-h'>Sunrise</h4>
+            {/* <h4 className='sun-r-h'>Sunrise</h4>
             <p className='sun-r-d'>{sunrise}</p>
             <h4 className='sun-s-h'>Sunset</h4>
-            <p className='sun-s-d'>{sunset}</p>
+            <p className='sun-s-d'>{sunset}</p> */}
         </React.Fragment>
     )
 }
