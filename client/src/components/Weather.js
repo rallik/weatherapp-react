@@ -1,22 +1,18 @@
 import React from 'react';
-import SunCalc from 'suncalc';
 import { useGlobalContext } from '../context';
-import { convertTime, getDaylight, roundTemp, pressureConv, getWind } from './functions';
+import { roundTemp, pressureConv, getWind } from './functions';
 import Time from './Time'
 
 const Weather = () => {
     const { currentWeather } = useGlobalContext();
     console.count('context - currentWeather')
     console.log(currentWeather)
-    const { clouds, coord, dt, main, name, sys, timezone, visibility, weather, wind } = currentWeather;
+    const { clouds, main, name, weather, wind } = currentWeather;
     const { humidity } = main;
     // console.log(clouds, coord, dt, main, name, sys, timezone, visibility, weather, wind)
     // console.log(currentWeather)
     
     // console.log(sunrise, sunset)
-
-
-    
 
 
     const temp = roundTemp(main.temp);
@@ -37,12 +33,10 @@ const Weather = () => {
                 <Time/>
 
                 <div className='conditions'>
-                    <h3 className='cond'>Conditions: </h3>
                     {
                         weather.map((w) => {
-                            // const id = () => new Date().getTime.toString();
                             return (
-                                <p key={w.id} className='current-w-d'>{w.description}</p>
+                                <h3 key={w.id} className='current-w-d'>{w.description}</h3>
                             );
                         })
                     }

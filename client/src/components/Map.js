@@ -71,7 +71,7 @@ const Display = () => {
                         <TileLayer attribution={m_attr} url={m_url}/>
                     </LayersControl.BaseLayer>
 
-                    <LayersControl.Overlay name='Pricipitation'>
+                    <LayersControl.Overlay name='Pricipitation' checked={true}>
                         <WMSTileLayer attribution={is_attribution} url={is_source} opacity={0.4} params={{layers: is_layers, format:is_format, transparent:true}} whenCreated={console.log('created')}/>
                     </LayersControl.Overlay>
 

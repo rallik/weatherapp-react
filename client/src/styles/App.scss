@@ -125,7 +125,20 @@ header {
         display: block;
         margin: 0.5rem 1rem;
     }
-  }
+}
+
+.time {
+    display: flex;
+    flex-direction: row;
+}
+
+.time-updated {
+    font-size: 0.5em;
+}
+
+.current-w-d {
+    text-transform: capitalize;
+}
 
 .map-display {
     width: 100%;

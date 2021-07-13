@@ -52,6 +52,7 @@ export const convertTime = (unixInput, notUnix) => {
     let minute = time.getMinutes();
     let second = time.getSeconds();
     let session = "am";
+    let zone = time.getTimezoneOffset() / -60;
 
     if (hour >= 12){
         hour = hour - 12;
@@ -62,8 +63,13 @@ export const convertTime = (unixInput, notUnix) => {
     minute = (minute < 10 ) ? "0" + minute : minute;
     second = (second < 10 ) ? "0" + second : second;
     
-    let time_display = hour + ":" + minute + ":" + second + " " + session;
-    return { t_display: time_display, hour, minute, second, session, date: time, day};
+    let time_display = hour + ":" + minute + " " + session;
+    return { t_display: time_display, hour, minute, second, session, date: time, day, zone};
+}
+
+export const getCurrentTime = () => {
+    const now = new Date();
+    return convertTime(now, true);
 }
 
 export const getDaylight = (daylight) => {
