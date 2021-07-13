@@ -31,28 +31,22 @@
 
 // }
 
-export const convertTime = (unixInput, notUnix) => {
+export const convertTime = (unixInput, notUnix, loczone) => {
     let time;
-    // if (needtzcorrect === true) {
-    //     time = convertTimezone(unixInput, timezone);
-    //     console.log('time3',time)
-    // } else {
-    //     time = unixInput;
-    // }
-
     if (notUnix !== true) {
         time = new Date(unixInput * 1000);
     } else {
         time = unixInput;
     }
     
+    let userzone = time.getTimezoneOffset() / -60;
+
 
     let day = time.getDate();
     let hour = time.getHours();
     let minute = time.getMinutes();
     let second = time.getSeconds();
     let session = "am";
-    let zone = time.getTimezoneOffset() / -60;
 
     if (hour >= 12){
         hour = hour - 12;
@@ -64,7 +58,7 @@ export const convertTime = (unixInput, notUnix) => {
     second = (second < 10 ) ? "0" + second : second;
     
     let time_display = hour + ":" + minute + " " + session;
-    return { t_display: time_display, hour, minute, second, session, date: time, day, zone};
+    return { t_display: time_display, hour, minute, second, session, date: time, day, userzone};
 }
 
 export const getCurrentTime = () => {

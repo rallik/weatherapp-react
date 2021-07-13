@@ -5,7 +5,7 @@ import { convertTime, getDaylight, getCurrentTime} from './functions';
 
 const SunSched = ({ props }) => {
     console.log('&&&&&&&&&&&&&&&&&&&&&&&',props)
-    const { date, day, sys, coord, timezone } = props;
+    const { sys, coord, timezone, location_time: { date, day } } = props;
     console.log(timezone/3600)
     const { sunrise, sunset } = getDaylight(sys);
     
@@ -39,9 +39,9 @@ const SunSched = ({ props }) => {
     for (let key of suntimes_keys) {
         // console.log(suntimes_today[key])
         // console.log(typeof suntimes_today[key]);
-        newtimes_today[key] = convertTime(suntimes_today[key], true);
-        newtimes_tomorrow[key] = convertTime(suntimes_tomorrow[key], true);
-        newtimes_yesterday[key] = convertTime(suntimes_yesterday[key], true);
+        newtimes_today[key] = convertTime(suntimes_today[key], true, timezone);
+        newtimes_tomorrow[key] = convertTime(suntimes_tomorrow[key], true, timezone);
+        newtimes_yesterday[key] = convertTime(suntimes_yesterday[key], true, timezone);
     }
     console.log(date, day)
     console.log('suntimes', suntimes_today);
