@@ -1,6 +1,6 @@
 import React from 'react';
 import { useGlobalContext } from '../context';
-import { roundTemp, pressureConv, getWind } from './functions';
+import { roundTemp, pressureConv, getWind } from '../utils/functions';
 import LocTime from './LocTime'
 
 const Weather = () => {

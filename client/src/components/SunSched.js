@@ -1,13 +1,14 @@
 import React from 'react';
 import SunCalc from 'suncalc';
-import { convertTime, getDaylight, getCurrentTime} from './functions';
+// import { convertTime, getDaylight, getCurrentTime } from '../utils/functions';
+import { time } from '../utils/time';
 
 
 const SunSched = ({ props }) => {
     console.log('&&&&&&&&&&&&&&&&&&&&&&&',props)
-    const { sys, coord, timezone, location_time: { date, day } } = props;
+    const { sys, coord, timezone, location_time: { date_obj:date, day } } = props;
     console.log(timezone/3600)
-    const { sunrise, sunset } = getDaylight(sys);
+    // const { sunrise, sunset } = getDaylight(sys);
     
 
     //suncalc
@@ -39,9 +40,14 @@ const SunSched = ({ props }) => {
     for (let key of suntimes_keys) {
         // console.log(suntimes_today[key])
         // console.log(typeof suntimes_today[key]);
-        newtimes_today[key] = convertTime(suntimes_today[key], true, timezone);
-        newtimes_tomorrow[key] = convertTime(suntimes_tomorrow[key], true, timezone);
-        newtimes_yesterday[key] = convertTime(suntimes_yesterday[key], true, timezone);
+        // newtimes_today[key] = convertTime(suntimes_today[key], true, timezone);
+        // newtimes_tomorrow[key] = convertTime(suntimes_tomorrow[key], true, timezone);
+        // newtimes_yesterday[key] = convertTime(suntimes_yesterday[key], true, timezone);
+        newtimes_today[key] = time(suntimes_today[key], timezone);
+        newtimes_tomorrow[key] = time(suntimes_tomorrow[key], timezone);
+        newtimes_yesterday[key] = time(suntimes_yesterday[key], timezone);
+
+
     }
     console.log(date, day)
     console.log('suntimes', suntimes_today);
@@ -56,7 +62,7 @@ const SunSched = ({ props }) => {
     }
 
     console.log('sunwindow', sunwindow)
-    console.log('now', getCurrentTime());
+    // console.log('now', getCurrentTime());
     
 
 
