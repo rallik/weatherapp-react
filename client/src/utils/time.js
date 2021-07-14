@@ -37,7 +37,7 @@ const getDateObjParts = (date_obj_input) => {
             date_obj: date_obj_input
         }
         
-        console.log(time)
+        // console.log(time)
         return time;
     }
 }
@@ -52,12 +52,12 @@ const convertTimezone = (time_obj_input, location_tz) => {
 
 
     if (user_tz_hrs === location_tz_hrs) {
-        console.log(time_obj_return)
+        // console.log(time_obj_return)
         return time_obj_return;
     } else {
         const time_diff = location_tz_hrs - user_tz_hrs;
         const hr_shift = time_obj_return.hr24 + time_diff;
-        console.log(hr_shift)
+        // console.log(hr_shift)
 
         let hr_shift_corrected;
         
@@ -69,11 +69,11 @@ const convertTimezone = (time_obj_input, location_tz) => {
             hr_shift_corrected = hr_shift + 24;
             time_obj_return.hr24 = hr_shift_corrected;
         } else {
-            console.log('no shift past 0 or 24')
+            // console.log('no shift past 0 or 24')
             time_obj_return.hr24 = hr_shift;
         }
         
-        console.log(time_obj_return)
+        // console.log(time_obj_return)
         return time_obj_return;
 
     }
@@ -102,7 +102,7 @@ const formatTime = (time_obj_input) => {
         time_display
     }
 
-    console.log(time_obj_return)
+    // console.log(time_obj_return)
     return time_obj_return;
 }
 
@@ -119,9 +119,17 @@ export const time = (raw_input, location_tz) => {
 
         const time_obj_final = formatTime(time_obj_converted_tz);
 
-        console.log(time_obj_final)
+        // console.log(time_obj_final)
 
         return time_obj_final;
     }
 
+}
+
+
+export const getCurrentTime = () => {
+    const now = new Date();
+    const now_time_obj = getDateObjParts(now);
+    const now_time_obj_final = formatTime(now_time_obj)
+    return now_time_obj_final;
 }

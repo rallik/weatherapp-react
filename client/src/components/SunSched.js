@@ -1,5 +1,6 @@
 import React from 'react';
 import SunCalc from 'suncalc';
+import SunBar from './SunBar'
 // import { convertTime, getDaylight, getCurrentTime } from '../utils/functions';
 import { time } from '../utils/time';
 
@@ -68,10 +69,7 @@ const SunSched = ({ props }) => {
 
     return (
         <React.Fragment>
-            {/* <h4 className='sun-r-h'>Sunrise</h4>
-            <p className='sun-r-d'>{sunrise}</p>
-            <h4 className='sun-s-h'>Sunset</h4>
-            <p className='sun-s-d'>{sunset}</p> */}
+            <SunBar sunwindow={sunwindow} tz={timezone}/>
         </React.Fragment>
     )
 }
