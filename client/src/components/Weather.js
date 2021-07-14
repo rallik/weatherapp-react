@@ -1,13 +1,13 @@
 import React from 'react';
 import { useGlobalContext } from '../context';
-import { roundTemp, pressureConv, getWind } from './functions';
-import Time from './Time'
+import { roundTemp, pressureConv, getWind } from '../utils/functions';
+import LocTime from './LocTime'
 
 const Weather = () => {
     const { currentWeather } = useGlobalContext();
     console.count('context - currentWeather')
     console.log(currentWeather)
-    const { clouds, main, name, weather, wind } = currentWeather;
+    const { clouds, main, weather, wind } = currentWeather;
     const { humidity } = main;
     // console.log(clouds, coord, dt, main, name, sys, timezone, visibility, weather, wind)
     // console.log(currentWeather)
@@ -29,10 +29,16 @@ const Weather = () => {
     return (
         <React.Fragment>
             <section className='weather'>
-                <h1 className='city'>{name}</h1>
-                <Time/>
+                <LocTime/>
 
                 <div className='conditions'>
+                    
+                    <div className="current-temp">
+                        {/* <h4 className='current-temp-h'>Current Temp: </h4> */}
+                        <p className='current-temp-d'>{temp}°F</p>
+                    </div>
+
+                    <div className="current-w space">
                     {
                         weather.map((w) => {
                             return (
@@ -40,35 +46,35 @@ const Weather = () => {
                             );
                         })
                     }
-
-                    <div className="current-temp">
-                        <h4 className='current-temp-h'>Current Temp: </h4>
-                        <p className='current-temp-d'>{temp}°F</p>
                     </div>
 
-                    <div className="feels-like">
-                        <h4 className='feels-like-h'>Feels like: </h4>
-                        <p className='feels-like-d'>{feels_like}°F</p>
-                    </div>
-                    
-                    <div className="humidity">
-                        <h4 className='humidity-h'>Humidity: </h4>
-                        <p className='humidity-d'>{humidity} %</p>
+                    <div className="row-one">
+                        <div className="feels-like third">
+                            <h4 className='feels-like-h small'>Feels like: </h4>
+                            <p className='feels-like-d small space'>{feels_like}°F</p>
+                        </div>
+                        
+                        <div className="humidity third">
+                            <h4 className='humidity-h small'>Humidity: </h4>
+                            <p className='humidity-d small space'>{humidity} %</p>
+                        </div>
+
+                        <div className="pressure third">
+                            <h4 className='pressure-h small'>Pressure: </h4>
+                            <p className='pressure-d small space'>{pressure_rnd} inHg</p>
+                        </div>
                     </div>
 
-                    <div className="pressure">
-                        <h4 className='pressure-h'>Pressure: </h4>
-                        <p className='pressure-d'>{pressure_rnd} inHg</p>
-                    </div>
+                    <div className="row-two">
+                        <div className="wind half">
+                            <h4 className='wind-h small'>Wind: </h4>
+                            <p className='wind-d small space'>{speed} mph {direction}</p>
+                        </div>
 
-                    <div className="wind">
-                        <h4 className='wind-h'>Wind Speed/Direction: </h4>
-                        <p className='wind-d'>{speed} mph {direction}</p>
-                    </div>
-
-                    <div className="clouds">
-                        <h4 className='clouds-h'>Clouds: </h4>
-                        <p className='clouds-d'>{clouds.all}</p>
+                        <div className="clouds half">
+                            <h4 className='clouds-h small'>Clouds: </h4>
+                            <p className='clouds-d small space'>{clouds.all}</p>
+                        </div>
                     </div>
                 </div>
             </section>

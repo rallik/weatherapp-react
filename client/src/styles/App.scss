@@ -46,7 +46,7 @@ header {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 55vh;
+    height: 60vh;
 }
 
 .search {
@@ -104,45 +104,87 @@ header {
     padding-top: 4em;
 }
 
-
+//TODO -> change back to grid
 .weather {
     width: 100%;
     height: 100%;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .city {
-    font-size: 2em;
+    font-size: 1.7em;
+    margin-left: -0.1rem;
+    justify-self: flex-start;
 }
 
 .conditions {
-    margin-top: 3rem;
+    margin-top: 4rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: flex-start;
+}
 
-    div {
-        display: block;
-        margin: 0.5rem 1rem;
-    }
+.space {
+    margin-top: 0.2rem;
+}
+
+.small {
+    font-size: 0.9rem;
 }
 
 .time {
     display: flex;
-    flex-direction: row;
+    flex-wrap: nowrap;
 }
 
 .time-updated {
     font-size: 0.5em;
 }
 
+.current-temp {
+    flex: 1 1 100%;
+}
+
+.current-temp-d {
+    font-size: 3em;
+    text-align: center;
+}
+
+.current-w {
+    margin-bottom: 1rem;
+    flex: 1 1 100%;
+    text-align: center;
+}
+
 .current-w-d {
     text-transform: capitalize;
 }
 
+.row-one {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.row-two {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.row-one, .row-two {
+    align-self: baseline;
+}
+
 .map-display {
     width: 100%;
-    height: 45vh;
+    height: 40vh;
 
     .map {
         width: 100%;

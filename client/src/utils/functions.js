@@ -31,28 +31,37 @@
 
 // }
 
-export const convertTime = (unixInput, notUnix) => {
-    let time;
-    // if (needtzcorrect === true) {
-    //     time = convertTimezone(unixInput, timezone);
-    //     console.log('time3',time)
-    // } else {
-    //     time = unixInput;
-    // }
 
-    if (notUnix !== true) {
-        time = new Date(unixInput * 1000);
+
+export const convertTime = (time_input, is_date_obj, loczone) => {
+    console.log('INVALID DATE TEST', time_input, typeof time_input)
+    let time;
+
+
+    if (is_date_obj !== true && typeof time_input === 'number') {
+        time = new Date(time_input * 1000);
     } else {
-        time = unixInput;
+        time = time_input;
     }
     
-
     let day = time.getDate();
     let hour = time.getHours();
     let minute = time.getMinutes();
     let second = time.getSeconds();
     let session = "am";
-    let zone = time.getTimezoneOffset() / -60;
+
+
+    let loczonehrs = loczone / 3600;
+    let userzone = time.getTimezoneOffset() / -60;
+
+    let zonediff = loczonehrs - userzone;
+    // console.log('zone compare', userzone, loczonehrs)
+    // console.log('zone diff', zonediff)
+
+    // if (zonediff) {
+    //     console.log(hour, typeof hour, hour + zonediff)
+    // }
+
 
     if (hour >= 12){
         hour = hour - 12;
@@ -64,12 +73,19 @@ export const convertTime = (unixInput, notUnix) => {
     second = (second < 10 ) ? "0" + second : second;
     
     let time_display = hour + ":" + minute + " " + session;
-    return { t_display: time_display, hour, minute, second, session, date: time, day, zone};
+    return { t_display: time_display, hour, minute, second, session, date: time, day, userzone};
 }
 
 export const getCurrentTime = () => {
     const now = new Date();
     return convertTime(now, true);
+}
+
+
+
+export const convertTimezone = (time_input, loczone) => {
+
+
 }
 
 export const getDaylight = (daylight) => {
