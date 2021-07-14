@@ -69,7 +69,7 @@ const SunSched = ({ props }) => {
 
     return (
         <React.Fragment>
-            <SunBar sunwindow={sunwindow}/>
+            <SunBar sunwindow={sunwindow} tz={timezone}/>
         </React.Fragment>
     )
 }

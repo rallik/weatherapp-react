@@ -10,9 +10,10 @@ const LocTime = () => {
     return (
         <div className="loc-time">
             <h1 className='city'>{name}</h1>
-
-            <h4 className='time-updated'>Last Updated:&nbsp;</h4>
-            <p className='time-updated'>{location_time.time_display}</p>
+            <div className='time-updated'>
+                <h4>Last Updated:&nbsp;</h4>
+                <p>{location_time.time_display}</p>
+            </div>
             <SunSched props={{ sys, coord, location_time, timezone }} />
         </div>
     )

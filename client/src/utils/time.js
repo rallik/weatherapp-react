@@ -125,3 +125,11 @@ export const time = (raw_input, location_tz) => {
     }
 
 }
+
+
+export const getCurrentTime = () => {
+    const now = new Date();
+    const now_time_obj = getDateObjParts(now);
+    const now_time_obj_final = formatTime(now_time_obj)
+    return now_time_obj_final;
+}

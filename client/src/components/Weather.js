@@ -28,56 +28,63 @@ const Weather = () => {
     // console.log(clouds)
     return (
         <React.Fragment>
-            <section className='weather'>
+            <div className='weather'>
                 <LocTime/>
 
                 <div className='conditions'>
                     
-                    <div className="current-temp">
-                        {/* <h4 className='current-temp-h'>Current Temp: </h4> */}
-                        <p className='current-temp-d'>{temp}°F</p>
-                    </div>
-
-                    <div className="current-w space">
-                    {
-                        weather.map((w) => {
-                            return (
-                                <h3 key={w.id} className='current-w-d'>{w.description}</h3>
-                            );
-                        })
-                    }
-                    </div>
-
-                    <div className="row-one">
-                        <div className="feels-like third">
-                            <h4 className='feels-like-h small'>Feels like: </h4>
-                            <p className='feels-like-d small space'>{feels_like}°F</p>
-                        </div>
-                        
-                        <div className="humidity third">
-                            <h4 className='humidity-h small'>Humidity: </h4>
-                            <p className='humidity-d small space'>{humidity} %</p>
+                    <div className='temp-conditions'>
+                        <div className="current-temp">
+                            {/* <h4 className='current-temp-h'>Current Temp: </h4> */}
+                            <p className='current-temp-d'>{temp}°F</p>
                         </div>
 
-                        <div className="pressure third">
-                            <h4 className='pressure-h small'>Pressure: </h4>
-                            <p className='pressure-d small space'>{pressure_rnd} inHg</p>
+                        <div className="current-w space-top">
+                        {
+                            weather.map((w) => {
+                                return (
+                                    <h3 key={w.id} className='current-w-d'>{w.description}</h3>
+                                );
+                            })
+                        }
                         </div>
                     </div>
 
-                    <div className="row-two">
-                        <div className="wind half">
-                            <h4 className='wind-h small'>Wind: </h4>
-                            <p className='wind-d small space'>{speed} mph {direction}</p>
+                    <div className='conditions-table'>
+                        <div className="row-one">
+                            <div className="feels-like">
+                                <h4 className='feels-like-h'>Feels like</h4>
+                                <p className='feels-like-d space-left'>{feels_like}°F</p>
+                            </div>
+                            
+                            <div className="humidity">
+                                <h4 className='humidity-h'>Humidity</h4>
+                                <p className='humidity-d space-left'>{humidity} &#37;</p>
+                            </div>
+
+                            <div className="pressure">
+                                <h4 className='pressure-h'>Pressure</h4>
+                                <p className='pressure-d space-left'>{pressure_rnd} inHg</p>
+                            </div>
                         </div>
 
-                        <div className="clouds half">
-                            <h4 className='clouds-h small'>Clouds: </h4>
-                            <p className='clouds-d small space'>{clouds.all}</p>
+                        <div className="row-two">
+                            <div className="wind">
+                                <h4 className='wind-h'>Wind</h4>
+                                <p className='wind-d space-left'>{speed} mph {direction}</p>
+                            </div>
+
+                            <div className="clouds">
+                                <h4 className='clouds-h'>Clouds</h4>
+                                <p className='clouds-d space-left'>{clouds.all} &#37;</p>
+                            </div>
+                            <div>
+                                <h4></h4>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
             
 
             
