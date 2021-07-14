@@ -9,6 +9,13 @@ const SunBar = ({ sunwindow, tz }) => {
     const current_time = time(new Date(), tz);
     console.log(current_time)
 
+    // useEffect(() => {
+    //     effect
+    //     return () => {
+    //         cleanup
+    //     }
+    // }, [input])
+
 
 
     return (
