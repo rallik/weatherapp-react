@@ -1,5 +1,9 @@
-import React from 'react'
-import { time } from '../utils/time';
+import React, { useEffect, useState } from 'react'
+import { time, sortTimesObj, filterVisiblePositions, getPercentsFromTimes } from '../utils/time';
+
+
+
+
 
 
 const SunBar = ({ sunwindow, tz }) => {
@@ -7,8 +11,14 @@ const SunBar = ({ sunwindow, tz }) => {
     console.log(sunwindow)
 
     const current_time = time(new Date(), tz);
-    console.log(current_time)
+    // console.log(current_time.date_obj.getTime())
 
+    const sorted_times = sortTimesObj(sunwindow);
+    // console.log(sorted_times)
+
+    const filtered_times = filterVisiblePositions(sorted_times, current_time);
+
+    const percents_from_times = getPercentsFromTimes(filtered_times);
 
 
     return (
