@@ -169,5 +169,85 @@ export const sortTimesObj = (suntimes_obj) => {
 
     // console.log(suntimes_array)
     return suntimes_array;
+}
 
+
+export const filterVisiblePositions = (sorted_times_array, now) => {
+    console.log(sorted_times_array)
+    console.log(now)
+
+    const now_hours = now.date_obj.getHours();
+    // console.log(now_hours)
+
+
+    const plus_12 = now_hours + 12;
+    // console.log(plus_12)
+    const plus_12_obj = new Date();
+
+
+    const minus_12 = now_hours - 12
+    // console.log(minus_12)
+
+    const minus_12_obj = new Date();
+
+
+
+    const plus_12_hrs = new Date(plus_12_obj.setHours(plus_12)).getTime();
+    const minus_12_hrs = new Date(minus_12_obj.setHours(minus_12)).getTime();
+    const now_hrs = now.date_obj.getTime();
+
+    // console.log(minus_12_hrs)
+    // console.log(now.date_obj.getTime())
+    // console.log(plus_12_hrs)
+
+    const times_in_range = []
+
+    for (let time_el of sorted_times_array) {
+        let compare_val = time_el.v.date_obj.getTime();
+        if (compare_val >= minus_12_hrs && compare_val <= plus_12_hrs) {
+            times_in_range.push(time_el)
+        }
+    }
+
+
+    const range = {
+        minus_12_hrs,
+        now_hrs,
+        plus_12_hrs
+    }
+
+    // console.log(times_in_range)
+    return { times_in_range, range };
+}
+
+
+
+export const getPercentsFromTimes = (filtered_times_input) => {
+    console.log(filtered_times_input)
+
+    const { range, times_in_range } = filtered_times_input;
+
+    let time_denomenator = range.plus_12_hrs - range.minus_12_hrs;
+    let time_x0 = range.minus_12_hrs;
+    let time_x1;
+
+    let percent;
+
+    for (let times of times_in_range) {
+        
+        time_x1 = times.v.date_obj.getTime();
+
+        percent = (time_x1 - time_x0) / time_denomenator*100;
+
+        console.log(percent)
+        
+
+
+
+
+
+    }
+
+
+    return;
 }
