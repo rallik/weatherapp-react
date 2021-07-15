@@ -133,3 +133,41 @@ export const getCurrentTime = () => {
     const now_time_obj_final = formatTime(now_time_obj)
     return now_time_obj_final;
 }
+
+
+export const sortTimesObj = (suntimes_obj) => {
+
+    // console.log(Object.keys(suntimes_obj.today))
+
+    let keys = [
+        'yesterday',
+        'today',
+        'tomorrow'
+    ];
+
+    let data_order = [
+        'sunrise',
+        'sunriseEnd',
+        'goldenHourEnd',
+        'solarNoon',
+        'goldenHour',
+        'sunsetStart',
+        'sunset',
+        'dusk',
+        'dawn'
+    ];
+
+    // console.log(keys)
+    // console.log(data_order)
+
+    const suntimes_array = []
+
+    for (let key of keys) {
+        for (let order of data_order)
+            suntimes_array.push({t: order + '_' + key, v: suntimes_obj[key][order]})
+    }
+
+    // console.log(suntimes_array)
+    return suntimes_array;
+
+}
