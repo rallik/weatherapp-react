@@ -229,25 +229,15 @@ export const getPercentsFromTimes = (filtered_times_input) => {
 
     let time_denomenator = range.plus_12_hrs - range.minus_12_hrs;
     let time_x0 = range.minus_12_hrs;
-    let time_x1;
-
-    let percent;
+    let time_x1, percent;
+    const return_w_percents = []
 
     for (let times of times_in_range) {
-        
         time_x1 = times.v.date_obj.getTime();
-
-        percent = (time_x1 - time_x0) / time_denomenator*100;
-
-        console.log(percent)
-        
-
-
-
-
-
+        percent = (time_x1 - time_x0) / time_denomenator * 100;
+        return_w_percents.push({p:percent, ...times})
     }
 
-
-    return;
+    console.log(return_w_percents)
+    return return_w_percents;
 }
