@@ -146,6 +146,7 @@ export const sortTimesObj = (suntimes_obj) => {
     ];
 
     let data_order = [
+        'dawn',
         'sunrise',
         'sunriseEnd',
         'goldenHourEnd',
@@ -154,7 +155,6 @@ export const sortTimesObj = (suntimes_obj) => {
         'sunsetStart',
         'sunset',
         'dusk',
-        'dawn'
     ];
 
     // console.log(keys)
@@ -164,7 +164,11 @@ export const sortTimesObj = (suntimes_obj) => {
 
     for (let key of keys) {
         for (let order of data_order)
-            suntimes_array.push({t: order + '_' + key, v: suntimes_obj[key][order]})
+            suntimes_array.push({
+                t: order,
+                d: key,
+                v: suntimes_obj[key][order]
+            })
     }
 
     // console.log(suntimes_array)
@@ -226,16 +230,72 @@ export const getPercentsFromTimes = (filtered_times_input) => {
     console.log(filtered_times_input)
 
     const { range, times_in_range } = filtered_times_input;
+    
+    const arr_len = times_in_range.length;
+
 
     let time_denomenator = range.plus_12_hrs - range.minus_12_hrs;
     let time_x0 = range.minus_12_hrs;
-    let time_x1, percent;
+    let time_x1;
+    let percent, percent_delta;
+    let percent_previous = 0;
+    let count = 0;
+    let last = false;
+    let previous_event;
+
     const return_w_percents = []
+
 
     for (let times of times_in_range) {
         time_x1 = times.v.date_obj.getTime();
         percent = (time_x1 - time_x0) / time_denomenator * 100;
-        return_w_percents.push({p:percent, ...times})
+        percent_delta = percent - percent_previous;
+        
+        if (count === arr_len - 1) {
+            last = true;
+        }
+
+        switch (times.t) {
+            case 'dawn':
+                previous_event = 'dusk';
+                break;
+            case 'sunrise':
+                previous_event = 'dawn';
+                break;
+            case 'sunriseEnd':
+                previous_event = 'sunrise';
+                break;
+            case 'goldenhourEnd':
+                previous_event = 'sunriseEnd';
+                break;
+            case 'solarNoon':
+                previous_event = 'goldenhourEnd';
+                break;
+            case 'goldenHour':
+                previous_event = 'solarNoon';
+                break;
+            case 'sunsetStart':
+                previous_event = 'goldenHour'
+                break;
+            case 'sunset':
+                previous_event = 'sunsetStart'
+                break;
+        
+            default:
+                break;
+        }
+
+        return_w_percents.push({
+            p: percent,
+            p_prev: percent_previous,
+            p_delta: percent_delta,
+            t_prev: previous_event,
+            last,
+            ...times
+        })
+        
+        percent_previous = percent;
+        count+=1;
     }
 
     console.log(return_w_percents)
