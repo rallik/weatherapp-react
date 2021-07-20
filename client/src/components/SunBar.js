@@ -1,6 +1,45 @@
 import React, { useEffect, useState } from 'react'
-import { time, sortTimesObj, filterVisiblePositions, getPercentsFromTimes } from '../utils/time';
+import { time, sortTimesObj, filterVisiblePositions, getPercentsFromTimes, getPrevNextCss } from '../utils/time';
 
+
+const BarSegment = ({ bar_data }) => {
+    let percent_to_string = bar_data.p_delta + '%';
+    let event_name_for_css;
+    
+    if (bar_data.t === 'solarNoon') {
+        event_name_for_css = 'noon day'
+    } else {
+        event_name_for_css = bar_data.t_css;
+    }
+
+
+    if (bar_data.last) {
+        const {for_css: last_segment_css} = getPrevNextCss(bar_data.t_next);
+        let last_segment_width = (100 - bar_data.p) + '%';
+
+        return (
+            <React.Fragment>
+                <div
+                    className={event_name_for_css + ' bar-section'} 
+                    style={{ width: percent_to_string }}
+                ></div>
+                <div
+                    className={last_segment_css + ' bar-section'} 
+                    style={{ width: last_segment_width }}
+                ></div>
+            </React.Fragment>
+        );
+    } else {
+        return (
+            <div
+                className={event_name_for_css + ' bar-section'} 
+                style={{ width: percent_to_string }}
+            ></div>
+        );
+    }
+
+    
+}
 
 const MapToBar = ({ times_w_percents_input }) => {
     console.log(times_w_percents_input)
@@ -9,27 +48,43 @@ const MapToBar = ({ times_w_percents_input }) => {
         <React.Fragment>
             {
                 times_w_percents_input.map((bar) => {
-                    let percent_to_string = bar.p_delta + '%';
+                    // let percent_to_string = bar.p_delta + '%';
 
-                    if (bar.p_prev === 0) {
-                        return (
-                            <div key={bar.t + bar.d} className={bar.t + ' bar-section'} style = {{ width: percent_to_string, backgroundColor: "black" }}></div>
-                        );
-                    }
-                    else if (bar.last === true) {
-                        //changes to difference between current percent and 100
-                        let end_percent_to_string = (100 - bar.p) + '%';
-                        // percent_to_string = end_percent + '%'
+                    // if (bar.first === true) {
+                    //     return (
+                    //         <div 
+                    //             key={bar.t + bar.d} 
+                    //             className={bar.t + ' bar-section'} 
+                    //             style={{ width: percent_to_string }}
+                    //         ></div>
+                    //     );
+                    // }
+                    // else if (bar.last === true) {
+                    //     //changes to difference between current percent and 100
+                    //     let end_percent_to_string = (100 - bar.p) + '%';
+                    //     // percent_to_string = end_percent + '%'
 
-                        return (
-                            <div key={bar.t + bar.d} className={bar.t + ' bar-section'} style = {{ width: end_percent_to_string, backgroundColor: "purple" }}></div>
-                        );
-                    }
-                    else {
-                        return (
-                            <div key={bar.t + bar.d} className={bar.t + ' bar-section'} style = {{ width: percent_to_string, backgroundColor: "green" }}></div>
-                        );
-                    }
+                    //     return (
+                    //         <div
+                    //             key={bar.t + bar.d}
+                    //             className={bar.t + ' bar-section'}
+                    //             style={{ width: end_percent_to_string }}
+                    //         ></div>
+                    //     );
+                    // }
+                    // else {
+                    //     return (
+                    //         <div
+                    //             key={bar.t + bar.d}
+                    //             className={bar.t + ' bar-section'}
+                    //             style={{ width: percent_to_string }}
+                    //         ></div>
+                    //     );
+                    // }
+
+                    return (
+                        <BarSegment key={bar.t + bar.d} bar_data={bar} />
+                    );
                 })
             }
         </React.Fragment>

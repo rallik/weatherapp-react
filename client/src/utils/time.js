@@ -189,7 +189,7 @@ export const filterVisiblePositions = (sorted_times_array, now) => {
     const plus_12_obj = new Date();
 
 
-    const minus_12 = now_hours - 12
+    const minus_12 = now_hours - 12;
     // console.log(minus_12)
 
     const minus_12_obj = new Date();
@@ -225,6 +225,60 @@ export const filterVisiblePositions = (sorted_times_array, now) => {
 }
 
 
+export const getPrevNextCss = (event_name) => {
+    let previous_event, next_event, for_css;
+    switch (event_name) {
+        case 'dawn':
+            previous_event = 'dusk';
+            next_event = 'sunrise';
+            for_css = 'night';
+            break;
+        case 'sunrise':
+            previous_event = 'dawn';
+            next_event = 'sunriseEnd';
+            for_css = 'dawn';
+            break;
+        case 'sunriseEnd':
+            previous_event = 'sunrise';
+            next_event = 'goldenHourEnd';
+            for_css = 'sunrise';
+            break;
+        case 'goldenHourEnd':
+            previous_event = 'sunriseEnd';
+            next_event = 'solarNoon';
+            for_css = 'goldenHour';
+            break;
+        case 'solarNoon':
+            previous_event = 'goldenHourEnd';
+            next_event = 'goldenHour';
+            for_css = 'day';
+            break;
+        case 'goldenHour':
+            previous_event = 'solarNoon';
+            next_event = 'sunsetStart';
+            for_css = 'day';
+            break;
+        case 'sunsetStart':
+            previous_event = 'goldenHour';
+            next_event = 'sunset';
+            for_css = 'goldenHour';
+            break;
+        case 'sunset':
+            previous_event = 'sunsetStart';
+            next_event = 'dusk';
+            for_css = 'sunset'
+            break;
+        case 'dusk':
+            previous_event = 'sunset';
+            next_event = 'dawn';
+            for_css = 'dusk';
+        default:
+            break;
+    }
+
+    return { previous_event, next_event, for_css };
+}
+
 
 export const getPercentsFromTimes = (filtered_times_input) => {
     console.log(filtered_times_input)
@@ -241,7 +295,7 @@ export const getPercentsFromTimes = (filtered_times_input) => {
     let percent_previous = 0;
     let count = 0;
     let last = false;
-    let previous_event;
+    let first = false;
 
     const return_w_percents = []
 
@@ -250,46 +304,28 @@ export const getPercentsFromTimes = (filtered_times_input) => {
         time_x1 = times.v.date_obj.getTime();
         percent = (time_x1 - time_x0) / time_denomenator * 100;
         percent_delta = percent - percent_previous;
+
+        if (count === 0) {
+            first = true;
+        } else {
+            first = false;
+        }
         
         if (count === arr_len - 1) {
             last = true;
         }
 
-        switch (times.t) {
-            case 'dawn':
-                previous_event = 'dusk';
-                break;
-            case 'sunrise':
-                previous_event = 'dawn';
-                break;
-            case 'sunriseEnd':
-                previous_event = 'sunrise';
-                break;
-            case 'goldenhourEnd':
-                previous_event = 'sunriseEnd';
-                break;
-            case 'solarNoon':
-                previous_event = 'goldenhourEnd';
-                break;
-            case 'goldenHour':
-                previous_event = 'solarNoon';
-                break;
-            case 'sunsetStart':
-                previous_event = 'goldenHour'
-                break;
-            case 'sunset':
-                previous_event = 'sunsetStart'
-                break;
-        
-            default:
-                break;
-        }
+        const { previous_event, next_event, for_css } = getPrevNextCss(times.t);
+
 
         return_w_percents.push({
             p: percent,
             p_prev: percent_previous,
             p_delta: percent_delta,
             t_prev: previous_event,
+            t_next: next_event,
+            t_css: for_css,
+            first,
             last,
             ...times
         })
@@ -298,6 +334,6 @@ export const getPercentsFromTimes = (filtered_times_input) => {
         count+=1;
     }
 
-    console.log(return_w_percents)
+    console.table(return_w_percents)
     return return_w_percents;
 }
