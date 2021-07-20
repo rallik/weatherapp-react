@@ -272,6 +272,7 @@ export const getPrevNextCss = (event_name) => {
             previous_event = 'sunset';
             next_event = 'dawn';
             for_css = 'dusk';
+            break;
         default:
             break;
     }

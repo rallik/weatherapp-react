@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { time, sortTimesObj, filterVisiblePositions, getPercentsFromTimes, getPrevNextCss } from '../utils/time';
 
 

@@ -7,13 +7,13 @@ import Loading from './Loading'
 
 const Switch = () => {
     const { initialRender, loading, validLocation } = useGlobalContext();
-    console.count('context - display');
+    // console.count('context - display');
 
 /************************************************************
 Can still submit same place 2x, sticks on loading view
 ************************************************************/
     
-    console.log('display if: ', initialRender.current, validLocation.current, loading)
+    // console.log('display if: ', initialRender.current, validLocation.current, loading)
 
     if (initialRender.current === true && validLocation.current === null && loading === false) {
         return (
@@ -28,7 +28,7 @@ Can still submit same place 2x, sticks on loading view
             <Weather />
         )
     } else {
-        console.log('error')
+        // console.log('error')
         return (
             <Error />
         );

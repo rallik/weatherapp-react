@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useGlobalContext } from '../context';
-import L, { Layer } from 'leaflet';
-import { MapContainer, TileLayer, WMSTileLayer, Marker, Popup, useMap, LayersControl } from 'react-leaflet';
+import { MapContainer, TileLayer, WMSTileLayer, useMap, LayersControl } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const Display = () => {
     const { currentWeather: { coord } } = useGlobalContext();
     const [center, setCenter] = useState([42.3601, -71.0589]);
-    const [zoom, setZoom] = useState(10)
-    const [key, setKey] = useState(Math.random())
+    let zoom = 10;
+    let key = Math.random();
 
     //API KEY
-    const OWM_KEY = process.env.REACT_APP_OWM_KEY;
     const M_KEY = process.env.REACT_APP_M_KEY;
 
     //Open Street Maps
@@ -19,7 +17,7 @@ const Display = () => {
     const osm_source = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
     // Rain viewer
-    const rv_attribution = 'aaa';
+    // const rv_attribution = 'aaa';
 
     //Iowa State
     const is_attribution = 'Weather data © 2012 IEM Nexrad';
@@ -43,11 +41,9 @@ const Display = () => {
     //Testing useMap
     const ChangeView = ({ center, zoom }) => {
         const map = useMap();
-        console.log('map', map.getCenter())
+        // console.log('map', map.getCenter())
         map.setView(center, zoom);
-
-        console.log('************ changeView');
-        
+        // console.log('************ changeView');
         return null;
     }
 
@@ -55,7 +51,7 @@ const Display = () => {
         if (coord) {
             const coordcenter = [coord.lat, coord.lon];
             setCenter(coordcenter)
-            console.log('************ map useEffect');
+            // console.log('************ map useEffect');
         }
     }, [coord])
     
@@ -72,7 +68,7 @@ const Display = () => {
                     </LayersControl.BaseLayer>
 
                     <LayersControl.Overlay name='Pricipitation' checked={true}>
-                        <WMSTileLayer attribution={is_attribution} url={is_source} opacity={0.4} params={{layers: is_layers, format:is_format, transparent:true}} whenCreated={console.log('created')}/>
+                        <WMSTileLayer attribution={is_attribution} url={is_source} opacity={0.4} params={{layers: is_layers, format:is_format, transparent:true}} whenCreated={console.log('map created')}/>
                     </LayersControl.Overlay>
 
                     <ChangeView center={center} zoom={zoom}/>
