@@ -15,14 +15,28 @@ const WeatherAppProvider = ({ children }) => {
     const KEY = process.env.REACT_APP_API_KEY;
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${KEY}&units=imperial`;
     // console.count('initialize states')
+
+    const postLoc = async () => {
+        const resp = await fetch('http://localhost:5501/search-loc', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+              },
+            body: JSON.stringify({ loc: location })
+        })
+        const dataaa = await resp.json();
+        console.log(dataaa)
+
+    };
     
     
     const fetchWeather = useCallback(async () => {
         // console.count('fetchWeather')
-        
         try {
             // console.count('try clause')
-            const response = await fetch(url);
+            // const response = await fetch(url);
+            postLoc()
+            const response = await fetch('http://localhost:5501/weather');
             const data = await response.json();
             if (data && data.cod !== "404") {
                 // console.count('valid return')
