@@ -12,20 +12,20 @@ const WeatherAppProvider = ({ children }) => {
     const initialRender = useRef(true);
     const validLocation = useRef(null);
 
-    const KEY = process.env.REACT_APP_API_KEY;
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${KEY}&units=imperial`;
+    // const KEY = process.env.REACT_APP_API_KEY;
+    // const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${KEY}&units=imperial`;
     // console.count('initialize states')
 
-    const postLoc = async () => {
+    const postLoc = async (updated_loc) => {
         const resp = await fetch('http://localhost:5501/search-loc', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
               },
-            body: JSON.stringify({ loc: location })
+            body: JSON.stringify({ loc: updated_loc })
         })
-        const dataaa = await resp.json();
-        console.log(dataaa)
+        const recieved = await resp.json();
+        console.log(recieved)
 
     };
     
@@ -35,7 +35,7 @@ const WeatherAppProvider = ({ children }) => {
         try {
             // console.count('try clause')
             // const response = await fetch(url);
-            postLoc()
+            postLoc(location)
             const response = await fetch('http://localhost:5501/weather');
             const data = await response.json();
             if (data && data.cod !== "404") {
@@ -54,7 +54,7 @@ const WeatherAppProvider = ({ children }) => {
             setLoading(false);
         }
         
-    }, [url])
+    }, [location])
 
     useEffect(() => {
         if (initialRender.current) {
