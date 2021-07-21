@@ -13,12 +13,9 @@ app.use(express.json({
 
 const port = process.env.PORT || 5501;
 
-// app.get('/', (req, res) => {
-//     res.send('Hello World!')
-//   })
   
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`App listening at http://localhost:${port}`)
 })
 
 
@@ -73,14 +70,3 @@ app.get('/weather', (req, res) => {
         res.json("Invalid Location")
     }
 })
-
-
-
-
-
-// let test = 'dub';
-// let ret = cities.filter((cit) => {
-//   return cit.name.slice(0, test.length - 1) === test;
-// })
-
-// console.log(por)
