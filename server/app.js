@@ -29,7 +29,7 @@ app.post('/search-loc', (req, res) => {
   console.log(req.body.loc)
 
   if (req.body.loc) {
-      let locChrFilter = req.body.loc.toLowerCase().replace(/[^a-zA-Z -]/g, "");
+      let locChrFilter = req.body.loc.toLowerCase().replace(/[^a-zA-Z -,]/g, "");
       console.log(locChrFilter)
       searchLoc = locChrFilter
       res.json("Location Recieved")
@@ -46,22 +46,22 @@ app.get('/weather', (req, res) => {
 
         axios.get(apiUrl)
             .then(response => {
-                console.log(response.data.cod)
+                // console.log(response.data.cod)
                 console.log(response.data)
-                res.json(response);
+                res.json(response.data);
             })
             .catch(error => {
                 if (error.response) {
                   // Request made and server responded
-                  console.log(error.response.data);
-                  console.log(error.response.status);
-                  console.log(error.response.headers);
+                  console.log('Response error: data', error.response.data);
+                  console.log('Response error: status', error.response.status);
+                  console.log('Response error: headers', error.response.headers);
                 } else if (error.request) {
                   // The request was made but no response was received
-                  console.log(error.request);
+                  console.log('Request error', error.request);
                 } else {
                   // Something happened in setting up the request that triggered an Error
-                  console.log('Error', error.message);
+                  console.log('Error other', error.message);
                 }
 
                 res.json({ cod: '404', message: 'city not found' })

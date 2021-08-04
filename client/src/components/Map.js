@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useGlobalContext } from '../context';
-import { MapContainer, TileLayer, WMSTileLayer, useMap, LayersControl } from 'react-leaflet';
+import { MapContainer, TileLayer, WMSTileLayer, useMap, ZoomControl, LayersControl } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const Display = () => {
@@ -20,7 +20,7 @@ const Display = () => {
     // const rv_attribution = 'aaa';
 
     //Iowa State
-    const is_attribution = 'Weather data © 2012 IEM Nexrad';
+    const is_attribution = 'Weather data © IEM Nexrad';
     const is_source = 'https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi'
     const is_layers = 'nexrad-n0r-900913';
     const is_format = 'image/png';
@@ -59,8 +59,8 @@ const Display = () => {
     return (
         <section className='map-display'>
             {/* Equivilant to L.map('map', {center: position, zoom: zoom}); */}
-            <MapContainer className='map' key={key} center={center} zoom={zoom} scrollWheelZoom={true}>
-                <LayersControl position='topright'>
+            <MapContainer className='map' key={key} center={center} zoom={zoom} scrollWheelZoom={true} zoomControl={false}>
+                <LayersControl position='bottomright'>
                     <LayersControl.BaseLayer checked name="Open Street Maps">
                         <TileLayer attribution={osm_attribution} url={osm_source}/>
                     </LayersControl.BaseLayer>
@@ -74,6 +74,8 @@ const Display = () => {
 
                     <ChangeView center={center} zoom={zoom}/>
                 </LayersControl>
+                <ZoomControl position="bottomright" />
+
             </MapContainer>
         </section>
     );
