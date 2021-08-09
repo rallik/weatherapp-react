@@ -1,2 +1,2 @@
 # weatherapp-react
- Second weather app uses React
+Server for PhotoWeather. Uses Node 12 and Axios to fetch weather data while keeping keys private.
