@@ -1,7 +1,7 @@
 {
-  "name": "server",
+  "name": "photoweather_server",
   "version": "1.0.0",
-  "description": "Server for weather app built with Express",
+  "description": "Server for PhotoWeather app built with Express",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
