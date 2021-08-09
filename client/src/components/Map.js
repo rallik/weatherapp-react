@@ -29,15 +29,6 @@ const Display = () => {
     const m_attr = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors &vert; <a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a>'; 
     const m_url = `https://api.maptiler.com/tiles/satellite/{z}/{x}/{y}.jpg?key=${M_KEY}`
     
-
-    //OWM Layer values
-    // const layers = {
-    //     clouds: 'clouds_new',
-    //     precip: 'precipitation_new',
-    //     pressure: 'pressure_new',
-    //     wind: 'wind_new',
-    //     temp: 'temp_new'
-    // };
     
     //Testing useMap
     const ChangeView = ({ center, zoom }) => {

@@ -25,20 +25,25 @@ let apiKey =`&appid=${KEY}`;
 let units = '&units=imperial';
 let searchLoc, apiLoc, apiUrl;
 
+
+// Recieves POST from client, cleans input of special characters and passes result to GET request.
+// Allows for potential upgrade to different Openweather API which requires
+// coordinates or location code. In that case, this function would search a JSON file using
+// the string input and return the unique location code for the search.
 app.post('/search-loc', (req, res) => {
   console.log(req.body.loc)
-
   if (req.body.loc) {
       let locChrFilter = req.body.loc.toLowerCase().replace(/[^a-zA-Z -,]/g, "");
       console.log(locChrFilter)
-      searchLoc = locChrFilter
+    searchLoc = locChrFilter;
       res.json("Location Recieved")
   } else {
       res.json("Location NOT Recieved")
   }
 });
 
-
+// Accepts cleaned input, accesses OpenWeather Current Weather API, and returns result
+// to the client.
 app.get('/weather', (req, res) => {
     if(searchLoc) {
         apiLoc = `q=${searchLoc}`;

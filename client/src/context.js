@@ -11,13 +11,11 @@ const WeatherAppProvider = ({ children }) => {
     const [modalOpen, setModalOpen] = useState(true);
     const initialRender = useRef(true);
     const validLocation = useRef(null);
+    const server_url = process.env.REACT_APP_SERVER_URL;
 
-    // const KEY = process.env.REACT_APP_API_KEY;
-    // const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${KEY}&units=imperial`;
-    // console.count('initialize states')
 
     const postLoc = async (updated_loc) => {
-        const resp = await fetch('http://localhost:5501/search-loc', {
+        const resp = await fetch(`${server_url}/search-loc`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,7 +34,7 @@ const WeatherAppProvider = ({ children }) => {
             // console.count('try clause')
             // const response = await fetch(url);
             postLoc(location)
-            const response = await fetch('http://localhost:5501/weather');
+            const response = await fetch(`${server_url}/weather`);
             const data = await response.json();
             if (data && data.cod !== "404") {
                 // console.count('valid return')
