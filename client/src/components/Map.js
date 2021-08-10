@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useGlobalContext } from '../context';
-import { MapContainer, TileLayer, WMSTileLayer, useMap, ZoomControl, LayersControl } from 'react-leaflet';
+import { MapContainer, TileLayer, WMSTileLayer, useMap, ZoomControl, LayersControl, Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+
+import L from "leaflet";
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
 const Display = () => {
     const { currentWeather: { coord } } = useGlobalContext();
     const [center, setCenter] = useState([42.3601, -71.0589]);
+    const [marker, setMarker] = useState(false);
     let zoom = 10;
     let key = Math.random();
 
@@ -39,10 +44,22 @@ const Display = () => {
         return null;
     }
 
+
+    //Add icon
+    const newIcon = () => {
+        let new_icon = L.icon({
+            iconUrl: icon,
+            shadowUrl: iconShadow,
+            iconAnchor: [16, 37],
+        });
+        return new_icon;
+    }
+
     useEffect(() => {
         if (coord) {
             const coordcenter = [coord.lat, coord.lon];
             setCenter(coordcenter)
+            setMarker(true);
             // console.log('************ map useEffect');
         }
     }, [coord])
@@ -66,7 +83,7 @@ const Display = () => {
                     <ChangeView center={center} zoom={zoom}/>
                 </LayersControl>
                 <ZoomControl position="bottomright" />
-
+                {marker && <Marker position={center} icon={newIcon()}/>}
             </MapContainer>
         </section>
     );
