@@ -12,30 +12,18 @@ const WeatherAppProvider = ({ children }) => {
     const initialRender = useRef(true);
     const validLocation = useRef(null);
     const server_url = process.env.REACT_APP_SERVER_URL;
-
-
-    const postLoc = async (updated_loc) => {
-        const resp = await fetch(`${server_url}/search-loc`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-              },
-            body: JSON.stringify({ loc: updated_loc })
-        })
-        const recieved = await resp.json();
-        console.log(recieved)
-
-    };
     
     
     const fetchWeather = useCallback(async () => {
-        // console.count('fetchWeather')
         try {
-            // console.count('try clause')
-            // const response = await fetch(url);
-            postLoc(location)
-            const response = await fetch(`${server_url}/weather`);
-            const data = await response.json();
+            const resp = await fetch(`${server_url}/weather`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                  },
+                body: JSON.stringify({ loc: location })
+            })
+            const data = await resp.json();
             if (data && data.cod !== "404") {
                 // console.count('valid return')
                 validLocation.current = true;
@@ -52,7 +40,7 @@ const WeatherAppProvider = ({ children }) => {
             setLoading(false);
         }
         
-    }, [location])
+    }, [location, server_url])
 
     useEffect(() => {
         if (initialRender.current) {
